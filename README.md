@@ -71,55 +71,54 @@ Show a list of highscores.
 
 ### Class design
 #### View classes
-- RootViewController: Instantiates Lanuage- and IntroductionViewController on first startup or starts MainViewController. Listens to when IntroductionViewController is finished and then starts the MainView.
-- LanguageViewController: Set the preferred language of the dictionary.
-- IntroductionViewController: Introduction and explanation of the game.
-- MainViewController: Main view where a game can be started, highscores opened, preferences changed and introductions introduced.
-- GameViewController: The actual game view.
-- GameOverViewController: Screen after game is finished.
-- HighscoresViewController: Renders the highscores.
-
-#### Controllers
-- GameController: Controls the flow of a game.
+```
+@class RootViewController - Instantiates Lanuage- and IntroductionViewController on first startup or starts MainViewController. Listens to when IntroductionViewController is finished and then starts the MainView.
+@class LanguageViewController - Set the preferred language of the dictionary.
+@class IntroductionViewController - Introduction and explanation of the game.
+@class MainViewController - Main view where a game can be started, highscores opened, preferences changed and introductions introduced.
+@class GameViewController - The actual game view.
+@class GameOverViewController - Screen after game is finished.
+@class HighscoresViewController - Renders the highscores.
+```
 
 #### Model classes
 ```
-@class BaseModel - Basic functionality for persistence.
-@method @public fetch() -> void
-@method @public save() -> void
+@class DictionaryModel - Storing dictionary in memory and look up words.
+@property dictionary: [String]!
+@property filtered: [String]!
+@method @public init(words: String)
+@method @public filter(word: String) -> [String] - Filters the complete list with a given word.
+@method @public count() -> int - Returns the length of the words remaining in the filtered list.
+@method @public result() -> String? - Returns the single remaining word in the list. If count != 1, return nil.
+@method @public reset() -> void - Remove the filter and re-start with the original dictionary.
 
 @class GameModel - Holds all data for a specific game.
-@property user1: NSManagedObject
-@property user2: NSManagedObject
-@property @public numberOfGames: int
-@property @public currentUser: NSManagedObject
-@property @public currentWord: String?
-@method @public addLeter(letter: String) -> void - add a letter to the current word.
-@method nextPlayer() -> NSManagedObject - returns the new player
+@property dictionary: Dictionary
+@property user1: String
+@property user2: String
+@property score: int
+@property currentUser: Bool
+@property currentWord: String!
+@method @public guess(letter: String) -> void - add a letter to the current word.
+@method @public turn() -> Bool - returns the new player
+@method @public ended() -> Bool - Check if current word is more than three letters and inside the dictionary.
+@method @public winner() -> Bool? - Returns boolean indicating who won, nil if no user won.
 
-@class UserModel: BaseModel - Store and retrieve a list of usernames.
-@property entity: String = 'UserEntity'
+@class UserModel - Store and retrieve a list of usernames.
+@property data -> [String]
 @method @public addUser(username: String) -> void
-@method @public getUsers() -> [NSManagedObject]
+@method @public getUsers() -> [String]
 
-@class HighscoreModel: BaseModel - Keep track of highscore entries.
+@class HighscoreModel - Keep track of highscore entries.
+@property data -> [?]
+@method @public addUser(user: String, score: int)
+@method @public getHighscore() -> [?]
+
+@class LanguageModel - Store the chosen language in NSUserDefaults
+@property currentLanguage: String!
+@method @public setLanguage(String: language)
+@method @public getLanguage() -> String
 ```
-
-#### Entities
-Entities are managed by Core Data.
-
-```
-@class UserEntity
-@relation hasMany: Highscore
-@attribute name: String
-
-@class HighscoreEntity
-@relation hasOne: User
-@attribute user: User
-@attribute score: int
-@attribute date: Date
-```
-
 
 ### Frameworks, libraries and others
 - Swift
@@ -129,5 +128,6 @@ Entities are managed by Core Data.
 - Playing sounds
 
 ### Links
+- http://stackoverflow.com/questions/24021950/how-do-i-put-different-types-in-a-dictionary-in-the-swift-language
 - http://www.raywenderlich.com/85578/first-core-data-app-using-swift
 - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309

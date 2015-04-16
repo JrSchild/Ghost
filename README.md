@@ -40,7 +40,8 @@ On the top are three buttons: language, introduction and highscores.
 ![screen 3](/doc/screen-3.jpg)
 
 #### Screen 4: Game on
-Game starts, computer or first player chooses a letter. 
+Game starts, computer or first player chooses a letter.
+
 1. Players current status of game. How many letters he has.
 2. Current score
 3. Button: Stop the game (-> screen 3)
@@ -67,6 +68,26 @@ Show a list of highscores.
 5. Score of player
 
 ![screen 6](/doc/screen-6.jpg)
+
+### Class design
+#### View classes
+- RootViewController: Instantiates Lanuage- and IntroductionViewController on first startup or starts MainViewController. Listens to when IntroductionViewController is finished and then starts the MainView.
+- LanguageViewController: Set the preferred language of the dictionary.
+- IntroductionViewController: Introduction and explanation of the game.
+- MainViewController: Main view where a game can be started, highscores opened, preferences changed and introductions introduced.
+- GameViewController: The actual game view.
+- GameOverViewController: Screen after game is finished.
+- HighscoresViewController: Renders the highscores.
+
+#### Controllers
+- GameController
+
+#### Model classes
+- BaseModel: Standard functionality.
+- PersistModel: Basic functionality for persistence. Extends BaseModel. Every model that extends PersistModel should implement an interface that encodes and decodes the data. Persists the data on each update.
+- UserModel: Store and retrieve a list of usernames.
+- HighscoreModel: Keep track of highscore entries.
+- GameModel: Holds all data for a specific game.
 
 ### Frameworks, libraries and others
 - Swift

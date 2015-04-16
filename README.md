@@ -87,8 +87,8 @@ Show a list of highscores.
 @property dictionary: [String]!
 @property filtered: [String]!
 @method @public init(words: String)
-@method @public filter(word: String) -> [String] - Filters the complete list with a given word.
-@method @public count() -> int - Returns the length of the words remaining in the filtered list.
+@method @public filter(word: String) -> void - Filters the complete list with a given word.
+@method @public count() -> Int - Returns the length of the words remaining in the filtered list.
 @method @public result() -> String? - Returns the single remaining word in the list. If count != 1, return nil.
 @method @public reset() -> void - Remove the filter and re-start with the original dictionary.
 
@@ -96,7 +96,7 @@ Show a list of highscores.
 @property dictionary: Dictionary
 @property user1: String
 @property user2: String
-@property score: int
+@property score: Int
 @property currentUser: Bool
 @property currentWord: String!
 @method @public guess(letter: String) -> void - add a letter to the current word.
@@ -111,7 +111,7 @@ Show a list of highscores.
 
 @class HighscoreModel - Keep track of highscore entries.
 @property data -> [?]
-@method @public addUser(user: String, score: int)
+@method @public addUser(user: String, score: Int)
 @method @public getHighscore() -> [?]
 
 @class LanguageModel - Store the chosen language in NSUserDefaults

@@ -80,14 +80,46 @@ Show a list of highscores.
 - HighscoresViewController: Renders the highscores.
 
 #### Controllers
-- GameController
+- GameController: Controls the flow of a game.
 
 #### Model classes
-- BaseModel: Standard functionality.
-- PersistModel: Basic functionality for persistence. Extends BaseModel. Every model that extends PersistModel should implement an interface that encodes and decodes the data. Persists the data on each update.
-- UserModel: Store and retrieve a list of usernames.
-- HighscoreModel: Keep track of highscore entries.
-- GameModel: Holds all data for a specific game.
+```
+@class BaseModel - Basic functionality for persistence.
+@method @public fetch() -> void
+@method @public save() -> void
+
+@class GameModel - Holds all data for a specific game.
+@property user1: NSManagedObject
+@property user2: NSManagedObject
+@property @public numberOfGames: int
+@property @public currentUser: NSManagedObject
+@property @public currentWord: String?
+@method @public addLeter(letter: String) -> void - add a letter to the current word.
+@method nextPlayer() -> NSManagedObject - returns the new player
+
+@class UserModel: BaseModel - Store and retrieve a list of usernames.
+@property entity: String = 'UserEntity'
+@method @public addUser(username: String) -> void
+@method @public getUsers() -> [NSManagedObject]
+
+@class HighscoreModel: BaseModel - Keep track of highscore entries.
+```
+
+#### Entities
+Entities are managed by Core Data.
+
+```
+@class UserEntity
+@relation hasMany: Highscore
+@attribute name: String
+
+@class HighscoreEntity
+@relation hasOne: User
+@attribute user: User
+@attribute score: int
+@attribute date: Date
+```
+
 
 ### Frameworks, libraries and others
 - Swift
@@ -95,3 +127,7 @@ Show a list of highscores.
 - Vibrations
 - Reading images
 - Playing sounds
+
+### Links
+- http://www.raywenderlich.com/85578/first-core-data-app-using-swift
+- https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309

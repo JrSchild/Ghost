@@ -18,8 +18,8 @@ class GameModel
     var currentUser = true
     var currentWord = ""
     
-    init() {
-        dictionary = DictionaryModel(words: readDictionary())
+    init(dictionary: DictionaryModel) {
+        self.dictionary = dictionary
     }
     
     // add a letter to the current word
@@ -61,20 +61,4 @@ class GameModel
         currentWord = ""
         dictionary.reset()
     }
-}
-
-func readDictionary() -> String {
-    // Temporarily provide a static dictionary.
-    return join("\n", [
-        "blue",
-        "red",
-        "green",
-        "yellow",
-        "purple",
-        "black",
-        "about",
-        "above",
-        "abuse",
-        "abandon"
-    ])
 }

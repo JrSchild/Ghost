@@ -13,7 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var game = GameModel()
+        
+        // Should throw een error when unable to laod dictionary.
+        var dictionary = DictionaryModel(words: readDictionary()!)
+        var game = GameModel(dictionary: dictionary)
         
         // Only one letter can be pushed.
         game.guess("a")
@@ -37,3 +40,11 @@ class ViewController: UIViewController {
 
 }
 
+func readDictionary() -> String? {
+    let path = NSBundle.mainBundle().pathForResource("EnglishDictionary", ofType: "txt")
+    
+    if let content = String(contentsOfFile:path!, encoding: NSUTF8StringEncoding, error: nil) {
+        return content
+    }
+    return nil
+}

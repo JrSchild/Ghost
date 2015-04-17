@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F25F88CC1AE0F386008D42D6 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25F88CA1AE0F386008D42D6 /* GameModel.swift */; };
 		F25F88CD1AE0F386008D42D6 /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25F88CB1AE0F386008D42D6 /* DictionaryModel.swift */; };
+		F25F88CF1AE10D2B008D42D6 /* EnglishDictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = F25F88CE1AE10D2B008D42D6 /* EnglishDictionary.txt */; };
 		F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E781ADFEEA00006DAAA /* AppDelegate.swift */; };
 		F2998E7B1ADFEEA00006DAAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E7A1ADFEEA00006DAAA /* ViewController.swift */; };
 		F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7C1ADFEEA00006DAAA /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		F25F88CA1AE0F386008D42D6 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		F25F88CB1AE0F386008D42D6 /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryModel.swift; sourceTree = "<group>"; };
+		F25F88CE1AE10D2B008D42D6 /* EnglishDictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EnglishDictionary.txt; sourceTree = "<group>"; };
 		F2998E731ADFEEA00006DAAA /* Ghost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2998E771ADFEEA00006DAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2998E781ADFEEA00006DAAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				F2998E7F1ADFEEA00006DAAA /* Images.xcassets */,
 				F2998E811ADFEEA00006DAAA /* LaunchScreen.xib */,
 				F2998E761ADFEEA00006DAAA /* Supporting Files */,
+				F25F88CE1AE10D2B008D42D6 /* EnglishDictionary.txt */,
 			);
 			path = Ghost;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */,
 				F2998E831ADFEEA00006DAAA /* LaunchScreen.xib in Resources */,
+				F25F88CF1AE10D2B008D42D6 /* EnglishDictionary.txt in Resources */,
 				F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

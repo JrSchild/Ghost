@@ -41,7 +41,7 @@ class GameModel
     
     // check if current word is more than three letters and inside the dictionary
     func ended() -> Bool {
-        return dictionary.isWord(currentWord)
+        return countElements(currentWord) > 3 && dictionary.isWord(currentWord)
     }
     
     // Returns boolean indicating who won, nil if no user won.

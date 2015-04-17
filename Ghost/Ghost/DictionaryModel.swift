@@ -42,6 +42,7 @@ class DictionaryModel
         filtered = dictionary
     }
     
+    // Checks if the current word is in the filterd list of words.
     func isWord(word: String) -> Bool {
         return find(filtered, word) != nil
     }

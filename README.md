@@ -90,7 +90,8 @@ Show a list of highscores.
 @method @public filter(word: String) -> void - Filters the complete list with a given word.
 @method @public count() -> Int - Returns the length of the words remaining in the filtered list.
 @method @public result() -> String? - Returns the single remaining word in the list. If count != 1, return nil.
-@method @public reset() -> void - Remove the filter and re-start with the original dictionary.
+@method @public reset() -> void - Reset filtered list to original dictionary.
+@method @public @isWord() -> Bool - Checks if the current word is in the filterd list of words.
 
 @class GameModel - Holds all data for a specific game.
 @property dictionary: Dictionary

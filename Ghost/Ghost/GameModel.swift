@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class GameModel
 {
     var dictionary : DictionaryModel
@@ -27,6 +25,7 @@ class GameModel
     // add a letter to the current word
     func guess(letter: String) {
         let pp = Array(letter)
+        
         if pp.count >= 1 {
             currentWord += "\(pp[0])"
             dictionary.filter(currentWord)
@@ -35,17 +34,32 @@ class GameModel
     
     // returns the new player
     func turn() -> Bool {
-        return true
+        currentUser = !currentUser
+        
+        return currentUser
     }
     
     // check if current word is more than three letters and inside the dictionary
     func ended() -> Bool {
-        return false
+        return dictionary.isWord(currentWord)
     }
     
     // Returns boolean indicating who won, nil if no user won.
     func winner() -> Bool? {
+        if ended() {
+            return currentUser
+        }
         return nil
+    }
+    
+    // TODO; Don't double initialize these variables. How to make dry? Do we want these variables to be optionals?
+    func start() {
+        user1 = ""
+        user2 = ""
+        score = 0
+        currentUser = true
+        currentWord = ""
+        dictionary.reset()
     }
 }
 

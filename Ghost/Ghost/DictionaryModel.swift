@@ -26,16 +26,23 @@ class DictionaryModel
     
     // Returns the length of the words remaining in the filtered list.
     func count() -> Int {
-        return 0
+        return filtered.count
     }
     
     // Returns the single remaining word in the list. If count != 1, return nil.
     func result() -> String? {
+        if count() == 1 {
+            return filtered[0]
+        }
         return nil
     }
     
-    // Remove the filter and re-start with the original dictionary.
+    // Reset filtered list to original dictionary.
     func reset() {
-        
+        filtered = dictionary
+    }
+    
+    func isWord(word: String) -> Bool {
+        return find(filtered, word) != nil
     }
 }

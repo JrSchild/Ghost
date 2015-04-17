@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Should throw een error when unable to laod dictionary.
+        // Should throw an error when unable to load dictionary.
         var dictionary = DictionaryModel(words: readDictionary()!)
         var game = GameModel(dictionary: dictionary)
         
@@ -37,7 +37,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 
 func readDictionary() -> String? {

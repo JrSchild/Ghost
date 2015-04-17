@@ -15,12 +15,13 @@ class DictionaryModel
     
     init(words: String) {
         dictionary = words.componentsSeparatedByString("\n")
-        filtered = [String]()
+        filtered = dictionary
     }
     
     // Filters the complete list with a given word.
     func filter(word: String) {
-        
+        filtered = filtered.filter() { $0.hasPrefix(word) }
+        println("\(word) \(filtered)")
     }
     
     // Returns the length of the words remaining in the filtered list.

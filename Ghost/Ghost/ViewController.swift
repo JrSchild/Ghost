@@ -12,8 +12,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        GameModel()
         // Do any additional setup after loading the view, typically from a nib.
+//        var game = GameModel()
+//        game.guess("a")
+//        game.guess("")
+//        game.guess("bla")
+//        game.guess("opa")
     }
 
     override func didReceiveMemoryWarning() {

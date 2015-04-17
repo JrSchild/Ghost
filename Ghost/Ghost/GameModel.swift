@@ -26,7 +26,11 @@ class GameModel
     
     // add a letter to the current word
     func guess(letter: String) {
-        
+        let pp = Array(letter)
+        if pp.count >= 1 {
+            currentWord += "\(pp[0])"
+            dictionary.filter(currentWord)
+        }
     }
     
     // returns the new player

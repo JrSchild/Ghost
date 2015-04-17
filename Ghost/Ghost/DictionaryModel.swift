@@ -14,7 +14,7 @@ class DictionaryModel
     var filtered : [String]
     
     init(words: String) {
-        dictionary = [String]()
+        dictionary = words.componentsSeparatedByString("\n")
         filtered = [String]()
     }
     

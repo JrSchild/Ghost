@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 class GameModel
 {
     var dictionary : DictionaryModel
@@ -17,9 +19,9 @@ class GameModel
     var score = 0
     var currentUser = true
     var currentWord = ""
-
+    
     init() {
-        dictionary = DictionaryModel(words: "words")
+        dictionary = DictionaryModel(words: readDictionary())
     }
     
     // add a letter to the current word
@@ -41,20 +43,20 @@ class GameModel
     func winner() -> Bool? {
         return nil
     }
-    
-    private func readDictionary() -> String {
-        // Temporarily provide a static dictionary.
-        return join("\n", [
-            "blue",
-            "red",
-            "green",
-            "yellow",
-            "purple",
-            "black",
-            "about",
-            "above",
-            "abuse",
-            "abandon"
-        ])
-    }
+}
+
+func readDictionary() -> String {
+    // Temporarily provide a static dictionary.
+    return join("\n", [
+        "blue",
+        "red",
+        "green",
+        "yellow",
+        "purple",
+        "black",
+        "about",
+        "above",
+        "abuse",
+        "abandon"
+    ])
 }

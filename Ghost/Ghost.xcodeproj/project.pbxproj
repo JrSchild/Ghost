@@ -12,9 +12,10 @@
 		F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7C1ADFEEA00006DAAA /* Main.storyboard */; };
 		F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7F1ADFEEA00006DAAA /* Images.xcassets */; };
 		F2998E831ADFEEA00006DAAA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2998E811ADFEEA00006DAAA /* LaunchScreen.xib */; };
-		F2998E9A1ADFF04E0006DAAA /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E991ADFF04E0006DAAA /* DictionaryModel.swift */; };
-		F2998E9C1ADFF2B40006DAAA /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E9B1ADFF2B40006DAAA /* GameModel.swift */; };
-		F2998E9D1ADFF2B40006DAAA /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E9B1ADFF2B40006DAAA /* GameModel.swift */; };
+		F2998E9F1AE0E7140006DAAA /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E9E1AE0E7140006DAAA /* GameModel.swift */; };
+		F2998EA01AE0E7140006DAAA /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E9E1AE0E7140006DAAA /* GameModel.swift */; };
+		F2998EA21AE0E7370006DAAA /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998EA11AE0E7370006DAAA /* DictionaryModel.swift */; };
+		F2998EA31AE0E7370006DAAA /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998EA11AE0E7370006DAAA /* DictionaryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +38,8 @@
 		F2998E821ADFEEA00006DAAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F2998E881ADFEEA00006DAAA /* GhostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GhostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2998E8D1ADFEEA00006DAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2998E991ADFF04E0006DAAA /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryModel.swift; path = Models/DictionaryModel.swift; sourceTree = "<group>"; };
-		F2998E9B1ADFF2B40006DAAA /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameModel.swift; path = Models/GameModel.swift; sourceTree = "<group>"; };
+		F2998E9E1AE0E7140006DAAA /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		F2998EA11AE0E7370006DAAA /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +119,8 @@
 		F2998E981ADFF0120006DAAA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F2998E991ADFF04E0006DAAA /* DictionaryModel.swift */,
-				F2998E9B1ADFF2B40006DAAA /* GameModel.swift */,
+				F2998EA11AE0E7370006DAAA /* DictionaryModel.swift */,
+				F2998E9E1AE0E7140006DAAA /* GameModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -225,9 +226,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2998E7B1ADFEEA00006DAAA /* ViewController.swift in Sources */,
-				F2998E9C1ADFF2B40006DAAA /* GameModel.swift in Sources */,
-				F2998E9A1ADFF04E0006DAAA /* DictionaryModel.swift in Sources */,
+				F2998E9F1AE0E7140006DAAA /* GameModel.swift in Sources */,
 				F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */,
+				F2998EA21AE0E7370006DAAA /* DictionaryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2998E9D1ADFF2B40006DAAA /* GameModel.swift in Sources */,
+				F2998EA01AE0E7140006DAAA /* GameModel.swift in Sources */,
+				F2998EA31AE0E7370006DAAA /* DictionaryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -381,6 +384,7 @@
 				INFOPLIST_FILE = GhostTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ghost.app/Ghost";
 			};
 			name = Debug;
@@ -389,6 +393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

@@ -42,8 +42,5 @@ class ViewController: UIViewController {
 func readDictionary() -> String? {
     let path = NSBundle.mainBundle().pathForResource("EnglishDictionary", ofType: "txt")
     
-    if let content = String(contentsOfFile:path!, encoding: NSUTF8StringEncoding, error: nil) {
-        return content
-    }
-    return nil
+    return String(contentsOfFile:path!, encoding: NSUTF8StringEncoding, error: nil)
 }

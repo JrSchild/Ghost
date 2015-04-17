@@ -126,6 +126,7 @@ Show a list of highscores.
 - Vibrations
 - Reading images
 - Playing sounds
+- File reader/writer
 
 ### Links
 - http://stackoverflow.com/questions/24021950/how-do-i-put-different-types-in-a-dictionary-in-the-swift-language

@@ -10,11 +10,12 @@ import Foundation
 
 class DictionaryModel
 {
-    var dictionary : [String]!
-    var filtered : [String]!
+    var dictionary : [String]
+    var filtered : [String]
     
     init(words: String) {
-        
+        dictionary = [String]()
+        filtered = [String]()
     }
     
     // Filters the complete list with a given word.

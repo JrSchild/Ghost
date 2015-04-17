@@ -31,10 +31,7 @@ class DictionaryModel
     
     // Returns the single remaining word in the list. If count != 1, return nil.
     func result() -> String? {
-        if count() == 1 {
-            return filtered[0]
-        }
-        return nil
+        return count() == 1 ? filtered[0] : nil
     }
     
     // Reset filtered list to original dictionary.

@@ -20,7 +20,7 @@ class DictionaryModel
     
     // Filters the complete list with a given word.
     func filter(word: String) {
-        filtered = filtered.filter() { $0.hasPrefix(word) }
+        filtered = filtered.filter { $0.hasPrefix(word) }
         println("\(word) \(filtered)")
     }
     

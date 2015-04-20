@@ -18,12 +18,12 @@ class ViewController: UIViewController {
         var dictionary = DictionaryModel(words: readDictionary()!)
         var game = GameModel(dictionary: dictionary)
         
-        // Only one letter can be pushed.
+        // Exactly one letter must be guessed.
         game.guess("a")
-        game.guess("")
-        game.guess("bla")
-        game.guess("opa")
-        game.start()
+        game.guess("b")
+        game.guess("o")
+        
+        game = GameModel(dictionary: dictionary)
         game.guess("a")
         game.guess("b")
         game.guess("o")

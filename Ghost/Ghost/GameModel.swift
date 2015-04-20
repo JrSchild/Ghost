@@ -14,7 +14,8 @@ class GameModel
     
     var user1 = ""
     var user2 = ""
-    var score = 0
+    var score1 = 0
+    var score2 = 0
     var currentUser = true
     var currentWord = ""
     
@@ -24,12 +25,13 @@ class GameModel
     
     // add a letter to the current word
     func guess(letter: String) {
-        let pp = Array(letter)
-        
-        if pp.count >= 1 {
-            currentWord += "\(pp[0])"
-            dictionary.filter(currentWord)
+        // exactly one letter must be guessed
+        if countElements(letter) != 1 {
+            NSException.raise("Only one letter can be guessed!", format: "", arguments: getVaList([]))
         }
+        
+        currentWord += letter
+        dictionary.filter(currentWord)
     }
     
     // returns the new player
@@ -41,7 +43,7 @@ class GameModel
     
     // check if current word is more than three letters and inside the dictionary
     func ended() -> Bool {
-        return countElements(currentWord) > 3 && dictionary.isWord(currentWord)
+        return (countElements(currentWord) > 3 && dictionary.isWord(currentWord)) || dictionary.count() == 0
     }
     
     // Returns boolean indicating who won, nil if no user won.
@@ -50,15 +52,5 @@ class GameModel
             return currentUser
         }
         return nil
-    }
-    
-    // TODO; Don't double initialize these variables. How to make dry? Do we want these variables to be optionals?
-    func start() {
-        user1 = ""
-        user2 = ""
-        score = 0
-        currentUser = true
-        currentWord = ""
-        dictionary.reset()
     }
 }

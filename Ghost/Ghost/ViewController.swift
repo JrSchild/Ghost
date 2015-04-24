@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var labelUser1: UILabel!
     @IBOutlet weak var labelUser2: UILabel!
     @IBOutlet weak var inputWord: UITextField!
@@ -18,8 +18,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var game: GameModel
     var dictionary: DictionaryModel
     
-//    var currChar : String!
-
     required init(coder aDecoder: NSCoder) {
         var user1 = "Ally"
         var user2 = "Joey"
@@ -31,10 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.init(coder: aDecoder)
     }
     
-//    // Might not be necessary
-//    deinit {
-//        inputWord.resignFirstResponder()
-//    }
+    //    // Might not be necessary
+    //    deinit {
+    //        inputWord.resignFirstResponder()
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +47,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         labelUser1.text = game.user1
         labelUser2.text = game.user2
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,11 +57,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if countElements(inputWord.text) != 1 {
             return false
         }
-
+        
         game.guess(inputWord.text)
         currentWord.text = game.currentWord
-        
-        inputWord.text = ""
         setReturnKeyType("Default")
         
         if let winner = game.winner() {
@@ -79,16 +75,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func keyPressed(sender: NSNotification) {
         let l = countElements(inputWord.text)
-//        var a : String
+        
         if l >= 1 {
-            var newChar = (inputWord.text as NSString).substringFromIndex(l - 1)
-            inputWord.text = newChar
-            currentWord.text = "\(game.currentWord)\(newChar)"
+            inputWord.text = (inputWord.text as NSString).substringFromIndex(l - 1)
             setReturnKeyType("Go")
         } else {
             setReturnKeyType("Default")
-            currentWord.text = game.currentWord
         }
+        currentWord.text = "\(game.currentWord)\(inputWord.text)"
     }
     
     func setReturnKeyType(type: String) {
@@ -103,14 +97,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setCurrentPlayer(turn: Bool) {
-        // TODO: How to make DRY?
-        if turn {
-            labelUser2!.textColor = UIColor.blackColor()
-            labelUser1!.textColor = UIColor.blueColor()
-        } else {
-            labelUser1!.textColor = UIColor.blackColor()
-            labelUser2!.textColor = UIColor.blueColor()
-        }
+        labelUser1.textColor = turn ? UIColor.blueColor() : UIColor.blackColor()
+        labelUser2.textColor = turn ? UIColor.blackColor() : UIColor.blueColor()
     }
 }
 

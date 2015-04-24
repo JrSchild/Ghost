@@ -11,16 +11,17 @@ import Foundation
 class GameModel
 {
     var dictionary : DictionaryModel
-    
-    var user1 = ""
-    var user2 = ""
+    var user1 : String
+    var user2 : String
     var score1 = 0
     var score2 = 0
     var currentUser = true
     var currentWord = ""
     
-    init(dictionary: DictionaryModel) {
+    init(dictionary: DictionaryModel, user1: String, user2: String) {
         self.dictionary = dictionary
+        self.user1 = user1
+        self.user2 = user2
     }
     
     // add a letter to the current word
@@ -48,9 +49,6 @@ class GameModel
     
     // Returns boolean indicating who won, nil if no user won.
     func winner() -> Bool? {
-        if ended() {
-            return currentUser
-        }
-        return nil
+        return ended() ? currentUser : nil
     }
 }

@@ -10,8 +10,8 @@ import Foundation
 
 class DictionaryModel
 {
-    var dictionary : [String]
-    var filtered : [String]
+    private var dictionary : [String]
+    private var filtered : [String]
     
     init(words: String) {
         dictionary = words.componentsSeparatedByString("\n")
@@ -41,6 +41,6 @@ class DictionaryModel
     
     // Checks if the current word is in the filterd list of words.
     func isWord(word: String) -> Bool {
-        return find(filtered, word) != nil
+        return contains(filtered, word)
     }
 }

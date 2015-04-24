@@ -74,7 +74,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyPressed(sender: NSNotification) {
-        let l = countElements(inputWord.text)
+        var attributedText : NSMutableAttributedString
+        var l = countElements(inputWord.text)
         
         if l >= 1 {
             inputWord.text = (inputWord.text as NSString).substringFromIndex(l - 1)
@@ -82,7 +83,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else {
             setReturnKeyType("Default")
         }
+        
         currentWord.text = "\(game.currentWord)\(inputWord.text)"
+        
+        attributedText = NSMutableAttributedString(string: currentWord.text!)
+        
+        l = countElements(currentWord.text!)
+        if l > countElements(game.currentWord) {
+            attributedText.addAttributes([NSForegroundColorAttributeName: UIColor.redColor()], range: NSRange(location: l - 1, length: 1))
+        }
+        
+        currentWord.attributedText = attributedText
     }
     
     func setReturnKeyType(type: String) {

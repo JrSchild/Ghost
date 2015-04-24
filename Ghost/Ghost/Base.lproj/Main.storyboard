@@ -29,6 +29,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-F8-PSW">
+                                <rect key="frame" x="0.0" y="57" width="600" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCA-34-F9e">
+                                <rect key="frame" x="87" y="289" width="228" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -37,6 +48,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentWord" destination="rCA-34-F9e" id="Hkq-MW-A2W"/>
+                        <outlet property="inputWord" destination="Tdy-F8-PSW" id="rKU-p1-AD7"/>
                         <outlet property="labelUser1" destination="ABg-ky-Pi1" id="oJ7-d2-1vi"/>
                         <outlet property="labelUser2" destination="MwQ-Lw-bLb" id="cSt-XU-Xw0"/>
                     </connections>

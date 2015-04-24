@@ -25,7 +25,7 @@ class GameModel
     }
     
     // add a letter to the current word
-    func guess(letter: String) {
+    func guess(letter: String)  -> Bool {
         // exactly one letter must be guessed
         if countElements(letter) != 1 {
             NSException.raise("Only one letter can be guessed!", format: "", arguments: getVaList([]))
@@ -33,6 +33,8 @@ class GameModel
         
         currentWord += letter
         dictionary.filter(currentWord)
+        
+        return turn()
     }
     
     // returns the new player

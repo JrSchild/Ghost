@@ -13,8 +13,6 @@ class GameModel
     var dictionary : DictionaryModel
     var user1 : String
     var user2 : String
-    var score1 = 0
-    var score2 = 0
     var currentUser = true
     var currentWord = ""
     
@@ -22,6 +20,7 @@ class GameModel
         self.dictionary = dictionary
         self.user1 = user1
         self.user2 = user2
+        self.dictionary.reset()
     }
     
     // add a letter to the current word

@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-F8-PSW">
-                                <rect key="frame" x="0.0" y="57" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="124" width="600" height="163"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -42,12 +42,26 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="scrore user 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDZ-l7-uKE">
+                                <rect key="frame" x="16" y="57" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="scrore user 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVm-DI-cFY">
+                                <rect key="frame" x="484" y="57" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MwQ-Lw-bLb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="0ei-ol-lep"/>
+                            <constraint firstItem="MDZ-l7-uKE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ba5-ja-wrL"/>
                             <constraint firstItem="rCA-34-F9e" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Bbc-Uc-PBE"/>
                             <constraint firstItem="ABg-ky-Pi1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="PS6-Ux-dW1"/>
+                            <constraint firstItem="TVm-DI-cFY" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Ymf-9j-jG7"/>
                             <constraint firstItem="rCA-34-F9e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="euX-Vh-6rw"/>
                         </constraints>
                     </view>
@@ -56,6 +70,8 @@
                         <outlet property="inputWord" destination="Tdy-F8-PSW" id="rKU-p1-AD7"/>
                         <outlet property="labelUser1" destination="ABg-ky-Pi1" id="oJ7-d2-1vi"/>
                         <outlet property="labelUser2" destination="MwQ-Lw-bLb" id="cSt-XU-Xw0"/>
+                        <outlet property="scoreUser1Label" destination="MDZ-l7-uKE" id="RrY-z4-Azv"/>
+                        <outlet property="scoreUser2Label" destination="TVm-DI-cFY" id="Wz4-Qr-VNq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -14,19 +14,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var labelUser2: UILabel!
     @IBOutlet weak var inputWord: UITextField!
     @IBOutlet weak var currentWord: UILabel!
+    @IBOutlet weak var scoreUser1Label: UILabel!
+    @IBOutlet weak var scoreUser2Label: UILabel!
     
-    var game: GameModel
     var dictionary: DictionaryModel
+    var game: GameModel!
+    var user1 = "Ally"
+    var user2 = "Joey"
+    var scoreUser1 = 0
+    var scoreUser2 = 0
+    let finalWord = "GHOST"
+    
+    // Indicates which user starts the next round
+    var userStart = true
     
     required init(coder aDecoder: NSCoder) {
-        var user1 = "Ally"
-        var user2 = "Joey"
         
         // DictionaryModel should throw an error when unable to load dictionary.
         dictionary = DictionaryModel(words: readDictionary()!)
-        game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         
         super.init(coder: aDecoder)
+    }
+    
+    func start() {
+        inputWord.text = ""
+        currentWord.text = ""
+        game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
+        game.currentUser = userStart
+        setCurrentPlayer(game.currentUser)
+        setScore()
     }
     
     //    // Might not be necessary
@@ -42,10 +58,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         inputWord.delegate = self
         inputWord.addTarget(self, action: "keyPressed:", forControlEvents: UIControlEvents.EditingChanged)
         setReturnKeyType("Default")
-        setCurrentPlayer(game.currentUser)
+        labelUser1.text = user1
+        labelUser2.text = user2
         
-        labelUser1.text = game.user1
-        labelUser2.text = game.user2
+        start()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,10 +79,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setReturnKeyType("Default")
         
         if let winner = game.winner() {
-            // TEMP: Set current winners label
-            var winnerLabel = winner ? labelUser1 : labelUser2
+            var score : Int
+            if winner {
+                score = ++scoreUser2
+            } else {
+                score = ++scoreUser1
+            }
             
-            winnerLabel.text = "winner: \(winnerLabel.text!)!"
+            setScore()
+            if score >= countElements(finalWord) {
+                println("GAME OVER")
+                var refreshAlert = UIAlertView()
+                refreshAlert.title = "GAME OVER"
+                refreshAlert.addButtonWithTitle("OK")
+                refreshAlert.show()
+            }
+            
+            userStart = !userStart
+            start()
         } else {
             setCurrentPlayer(game.currentUser)
         }
@@ -91,7 +121,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             attributedText.addAttributes([NSForegroundColorAttributeName: UIColor.redColor()], range: NSRange(location: l - 1, length: 1))
         }
         currentWord.attributedText = attributedText
-        
     }
     
     func setReturnKeyType(type: String) {
@@ -103,6 +132,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         inputWord.resignFirstResponder()
         inputWord.becomeFirstResponder()
+    }
+    
+    // TODO: Make DRY
+    func setScore() {
+        scoreUser1Label.text = finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser1)))
+        scoreUser2Label.text = finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser2)))
     }
     
     func setCurrentPlayer(turn: Bool) {

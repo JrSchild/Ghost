@@ -147,7 +147,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 func readDictionary() -> String? {
-    let path = NSBundle.mainBundle().pathForResource("EnglishDictionary", ofType: "txt")
+    let path = NSBundle.mainBundle().pathForResource("english", ofType: nil)
     
     return String(contentsOfFile:path!, encoding: NSUTF8StringEncoding, error: nil)
 }

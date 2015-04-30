@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class GameViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var labelUser1: UILabel!
     @IBOutlet weak var labelUser2: UILabel!
@@ -19,15 +19,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let dictionary: DictionaryModel
     var game: GameModel!
-    let user1 = "Ally"
-    let user2 = "Joey"
+    var user1 : String!
+    var user2 : String!
     var scoreUser1 = 0
     var scoreUser2 = 0
     let inputTest = NSPredicate(format:"SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     let finalWord = "GHOST"
     
     // Indicates which user starts the next round
-    var userStart = true
+    private var userStart = true
     
     required init(coder aDecoder: NSCoder) {
         

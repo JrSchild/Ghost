@@ -15,7 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var userPicker: UIPickerView!
     var currentPicker : UITextField!
     
-    let users = ["Joey", "Ally", "Kaylie", "Lisa", "Lo", "Wilene", "Bas"]
+    // TODO: Cache this in a singleton so it doesn't need to reload every time this view initializes.
+    var users = loadUsers()
     
     @IBAction func pickerUser1(sender: UIButton) {
         showPicker()
@@ -29,6 +30,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TEMP: If no users have been loaded, put some dummy data.
+        if users.count == 0 {
+            users = ["Joey", "Ally", "Kaylie", "Lisa", "Lo", "Wilene", "Bas"]
+            writeUsers(users)
+        }
+
         // Do any additional setup after loading the view.
     }
 
@@ -66,7 +73,7 @@ class MainViewController: UIViewController {
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
         currentPicker.text = users[row]
-        userPicker.hidden = true;
+        userPicker.hidden = true
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -78,4 +85,19 @@ class MainViewController: UIViewController {
         self.view.endEditing(true)
         userPicker.hidden = false
     }
+}
+
+// TODO: Move this code elsewhere?
+let writableDirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
+let usersPath = writableDirs![0].stringByAppendingPathComponent("users")
+
+func loadUsers() -> [String] {
+    if var text = String(contentsOfFile: usersPath, encoding: NSUTF8StringEncoding, error: nil) {
+        return text.componentsSeparatedByString("\n")
+    }
+    return []
+}
+
+func writeUsers(users: [String]) {
+    "\n".join(users).writeToFile(usersPath, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
 }

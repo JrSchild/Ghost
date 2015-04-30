@@ -101,7 +101,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         } else {
             setCurrentPlayer(game.currentUser)
         }
-        return false;
+        return false
     }
     
     func keyPressed(sender: NSNotification) {

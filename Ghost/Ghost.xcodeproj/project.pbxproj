@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F22640BD1AF22C1E00D61DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22640BC1AF22C1E00D61DD5 /* MainViewController.swift */; };
-		F24B03591AEF6BBD008DF2AD /* english in Resources */ = {isa = PBXBuildFile; fileRef = F24B03571AEF6BBD008DF2AD /* english */; };
-		F24B035C1AEF6D20008DF2AD /* dutch in Resources */ = {isa = PBXBuildFile; fileRef = F24B035B1AEF6D20008DF2AD /* dutch */; };
+		F22640C11AF238CB00D61DD5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22640BF1AF238CB00D61DD5 /* GameViewController.swift */; };
+		F22640C21AF238CB00D61DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22640C01AF238CB00D61DD5 /* MainViewController.swift */; };
+		F22640C61AF2391700D61DD5 /* dutch in Resources */ = {isa = PBXBuildFile; fileRef = F22640C41AF2391700D61DD5 /* dutch */; };
+		F22640C71AF2391700D61DD5 /* english in Resources */ = {isa = PBXBuildFile; fileRef = F22640C51AF2391700D61DD5 /* english */; };
 		F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */; };
 		F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035E1AEF966D008DF2AD /* GameModel.swift */; };
 		F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E781ADFEEA00006DAAA /* AppDelegate.swift */; };
-		F2998E7B1ADFEEA00006DAAA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E7A1ADFEEA00006DAAA /* GameViewController.swift */; };
 		F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7C1ADFEEA00006DAAA /* Main.storyboard */; };
 		F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7F1ADFEEA00006DAAA /* Images.xcassets */; };
 		F2998E831ADFEEA00006DAAA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2998E811ADFEEA00006DAAA /* LaunchScreen.xib */; };
@@ -30,15 +30,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F22640BC1AF22C1E00D61DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		F24B03571AEF6BBD008DF2AD /* english */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english; sourceTree = "<group>"; };
-		F24B035B1AEF6D20008DF2AD /* dutch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dutch; sourceTree = "<group>"; };
+		F22640BF1AF238CB00D61DD5 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Controllers/GameViewController.swift; sourceTree = "<group>"; };
+		F22640C01AF238CB00D61DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
+		F22640C41AF2391700D61DD5 /* dutch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dutch; path = Dictionaries/dutch; sourceTree = "<group>"; };
+		F22640C51AF2391700D61DD5 /* english */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = english; path = Dictionaries/english; sourceTree = "<group>"; };
 		F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryModel.swift; path = Models/DictionaryModel.swift; sourceTree = "<group>"; };
 		F24B035E1AEF966D008DF2AD /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameModel.swift; path = Models/GameModel.swift; sourceTree = "<group>"; };
 		F2998E731ADFEEA00006DAAA /* Ghost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2998E771ADFEEA00006DAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2998E781ADFEEA00006DAAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F2998E7A1ADFEEA00006DAAA /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F2998E7D1ADFEEA00006DAAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2998E7F1ADFEEA00006DAAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F2998E821ADFEEA00006DAAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -64,6 +64,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F22640BE1AF2384C00D61DD5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F22640BF1AF238CB00D61DD5 /* GameViewController.swift */,
+				F22640C01AF238CB00D61DD5 /* MainViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F22640C31AF238EC00D61DD5 /* Dictionaries */ = {
+			isa = PBXGroup;
+			children = (
+				F22640C41AF2391700D61DD5 /* dutch */,
+				F22640C51AF2391700D61DD5 /* english */,
+			);
+			name = Dictionaries;
+			sourceTree = "<group>";
+		};
 		F2998E6A1ADFEEA00006DAAA = {
 			isa = PBXGroup;
 			children = (
@@ -85,12 +103,10 @@
 		F2998E751ADFEEA00006DAAA /* Ghost */ = {
 			isa = PBXGroup;
 			children = (
-				F24B035B1AEF6D20008DF2AD /* dutch */,
-				F24B03571AEF6BBD008DF2AD /* english */,
+				F22640C31AF238EC00D61DD5 /* Dictionaries */,
+				F22640BE1AF2384C00D61DD5 /* Controllers */,
 				F2998E981ADFF0120006DAAA /* Models */,
 				F2998E781ADFEEA00006DAAA /* AppDelegate.swift */,
-				F2998E7A1ADFEEA00006DAAA /* GameViewController.swift */,
-				F22640BC1AF22C1E00D61DD5 /* MainViewController.swift */,
 				F2998E7C1ADFEEA00006DAAA /* Main.storyboard */,
 				F2998E7F1ADFEEA00006DAAA /* Images.xcassets */,
 				F2998E811ADFEEA00006DAAA /* LaunchScreen.xib */,
@@ -212,10 +228,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F24B03591AEF6BBD008DF2AD /* english in Resources */,
+				F22640C71AF2391700D61DD5 /* english in Resources */,
 				F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */,
+				F22640C61AF2391700D61DD5 /* dutch in Resources */,
 				F2998E831ADFEEA00006DAAA /* LaunchScreen.xib in Resources */,
-				F24B035C1AEF6D20008DF2AD /* dutch in Resources */,
 				F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,11 +250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2998E7B1ADFEEA00006DAAA /* GameViewController.swift in Sources */,
+				F22640C11AF238CB00D61DD5 /* GameViewController.swift in Sources */,
 				F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */,
 				F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */,
 				F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */,
-				F22640BD1AF22C1E00D61DD5 /* MainViewController.swift in Sources */,
+				F22640C21AF238CB00D61DD5 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

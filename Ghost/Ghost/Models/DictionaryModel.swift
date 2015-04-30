@@ -10,7 +10,7 @@ import Foundation
 
 class DictionaryModel
 {
-    private var dictionary : [String]
+    private let dictionary : [String]
     private var filtered : [String]
     
     init(words: String) {

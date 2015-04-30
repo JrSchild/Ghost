@@ -10,9 +10,9 @@ import Foundation
 
 class GameModel
 {
-    var dictionary : DictionaryModel
-    var user1 : String
-    var user2 : String
+    let dictionary : DictionaryModel
+    let user1 : String
+    let user2 : String
     var currentUser = true
     var currentWord = ""
     

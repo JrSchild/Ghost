@@ -17,13 +17,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scoreUser1Label: UILabel!
     @IBOutlet weak var scoreUser2Label: UILabel!
     
-    var dictionary: DictionaryModel
+    let dictionary: DictionaryModel
     var game: GameModel!
-    var user1 = "Ally"
-    var user2 = "Joey"
+    let user1 = "Ally"
+    let user2 = "Joey"
     var scoreUser1 = 0
     var scoreUser2 = 0
-    var inputTest = NSPredicate(format:"SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
+    let inputTest = NSPredicate(format:"SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     let finalWord = "GHOST"
     
     // Indicates which user starts the next round
@@ -90,7 +90,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             setScore()
             if score >= countElements(finalWord) {
                 println("GAME OVER")
-                var refreshAlert = UIAlertView()
+                let refreshAlert = UIAlertView()
                 refreshAlert.title = "GAME OVER"
                 refreshAlert.addButtonWithTitle("OK")
                 refreshAlert.show()

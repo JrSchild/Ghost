@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var user2 = "Joey"
     var scoreUser1 = 0
     var scoreUser2 = 0
+    var inputTest = NSPredicate(format:"SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     let finalWord = "GHOST"
     
     // Indicates which user starts the next round
@@ -105,16 +106,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func keyPressed(sender: NSNotification) {
         var l = countElements(inputWord.text)
-        var attributedText : NSMutableAttributedString
+        let inputChar = inputWord.text.lowercaseString
         
-        if l >= 1 {
-            inputWord.text = (inputWord.text as NSString).substringFromIndex(l - 1)
-            setReturnKeyType("Go")
-        } else {
-            setReturnKeyType("Default")
+        if inputTest!.evaluateWithObject(inputChar) {
+            inputWord.text = (inputChar as NSString).substringFromIndex(l - 1)
+        } else if l >= 1 {
+            inputWord.text = (inputChar as NSString).substringWithRange(NSRange(location: 0, length: l == 1 ? 0 : 1))
         }
+        setReturnKeyType("Auto")
         
-        attributedText = NSMutableAttributedString(string: "\(game.currentWord)\(inputWord.text)")
+        let attributedText = NSMutableAttributedString(string: "\(game.currentWord)\(inputWord.text)")
         
         l = attributedText.length
         if l > countElements(game.currentWord) {
@@ -128,6 +129,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             inputWord.returnKeyType = UIReturnKeyType.Go
         } else if type == "Default" {
             inputWord.returnKeyType = UIReturnKeyType.Default
+        } else if type == "Auto" {
+            // Set type based on input.
+            if countElements(inputWord.text) > 0 {
+                return setReturnKeyType("Go")
+            }
+            return setReturnKeyType("Default")
         }
         
         inputWord.resignFirstResponder()

@@ -95,3 +95,5 @@ Show a list of highscores.
 - http://stackoverflow.com/questions/24021950/how-do-i-put-different-types-in-a-dictionary-in-the-swift-language
 - http://www.raywenderlich.com/85578/first-core-data-app-using-swift
 - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+- http://www.raywenderlich.com/81879/storyboards-tutorial-swift-part-1
+- http://www.raywenderlich.com/81880/storyboards-tutorial-swift-part-2

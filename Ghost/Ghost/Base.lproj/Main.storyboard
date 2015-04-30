@@ -104,21 +104,61 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 1" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ebI-XJ-t6N">
                                 <rect key="frame" x="16" y="168" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="itN-9L-oFi">
                                 <rect key="frame" x="16" y="212" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-FX-eVH">
+                                <rect key="frame" x="330" y="176" width="21" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="1Wc-Vj-yb4"/>
+                                    <constraint firstAttribute="width" constant="21" id="FJQ-Yv-Osb"/>
+                                </constraints>
+                                <state key="normal" title="Pick" image="navicon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickerUser1:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="88n-41-wiR"/>
+                                </connections>
+                            </button>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMF-9V-1pc">
+                                <rect key="frame" x="0.0" y="497" width="375" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="N5Z-B6-IeA" id="VPY-1u-LvM"/>
+                                    <outlet property="delegate" destination="N5Z-B6-IeA" id="whq-8J-Pf5"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KV6-di-D4P">
+                                <rect key="frame" x="330" y="220" width="21" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="4iL-Ua-76a"/>
+                                    <constraint firstAttribute="width" constant="21" id="GD6-lI-PFg"/>
+                                </constraints>
+                                <state key="normal" title="Pick" image="navicon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickerUser1:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="9at-81-h75"/>
+                                    <action selector="pickerUser2:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="nNm-6e-Hxl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="itN-9L-oFi" firstAttribute="leading" secondItem="Wbh-eu-tU0" secondAttribute="leadingMargin" id="4N2-J4-UVV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QMF-9V-1pc" secondAttribute="trailing" constant="-16" id="8A2-18-J4j"/>
+                            <constraint firstItem="KV6-di-D4P" firstAttribute="leading" secondItem="itN-9L-oFi" secondAttribute="trailing" constant="-29" id="Dpi-QM-PYQ"/>
                             <constraint firstAttribute="centerX" secondItem="JYi-O8-qVP" secondAttribute="centerX" id="UHJ-Va-qQl"/>
+                            <constraint firstItem="G3k-FX-eVH" firstAttribute="leading" secondItem="ebI-XJ-t6N" secondAttribute="trailing" constant="-29" id="bGa-EG-onw"/>
                             <constraint firstItem="ebI-XJ-t6N" firstAttribute="trailing" secondItem="Wbh-eu-tU0" secondAttribute="trailingMargin" id="hQ7-jL-MIh"/>
+                            <constraint firstItem="hqM-IX-I3b" firstAttribute="top" secondItem="QMF-9V-1pc" secondAttribute="bottom" constant="8" id="hds-zr-Edu"/>
                             <constraint firstItem="ebI-XJ-t6N" firstAttribute="leading" secondItem="Wbh-eu-tU0" secondAttribute="leadingMargin" id="hsJ-R8-2GF"/>
                             <constraint firstItem="itN-9L-oFi" firstAttribute="trailing" secondItem="Wbh-eu-tU0" secondAttribute="trailingMargin" id="kcg-KA-q5x"/>
+                            <constraint firstItem="QMF-9V-1pc" firstAttribute="leading" secondItem="Wbh-eu-tU0" secondAttribute="leadingMargin" constant="-16" id="m0K-Ju-RFq"/>
                             <constraint firstAttribute="centerY" secondItem="JYi-O8-qVP" secondAttribute="centerY" constant="-0.5" id="wox-em-Xzn"/>
                         </constraints>
                     </view>
@@ -126,6 +166,7 @@
                     <connections>
                         <outlet property="inputPlayer1" destination="ebI-XJ-t6N" id="O3O-Uu-YBq"/>
                         <outlet property="inputPlayer2" destination="itN-9L-oFi" id="h3c-as-vjE"/>
+                        <outlet property="userPicker" destination="QMF-9V-1pc" id="Mj9-pm-09k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8y-VC-DXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,4 +174,7 @@
             <point key="canvasLocation" x="-404.5" y="136.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="navicon" width="320" height="224"/>
+    </resources>
 </document>

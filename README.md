@@ -97,3 +97,5 @@ Show a list of highscores.
 - https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
 - http://www.raywenderlich.com/81879/storyboards-tutorial-swift-part-1
 - http://www.raywenderlich.com/81880/storyboards-tutorial-swift-part-2
+- http://stackoverflow.com/questions/24836369/programmatically-create-and-show-uipickerview
+- http://stackoverflow.com/a/26819547

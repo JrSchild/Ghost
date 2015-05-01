@@ -60,7 +60,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         inputWord.delegate = self
         labelUser1.text = user1
         labelUser2.text = user2
-        setReturnKeyType("Default")
         start()
     }
     
@@ -76,7 +75,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         game.guess(inputWord.text)
         currentWord.text = game.currentWord
-        setReturnKeyType("Default")
+        inputWord.text = ""
         
         if let winner = game.winner() {
             var score : Int
@@ -112,7 +111,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         } else if l >= 1 {
             inputWord.text = (inputChar as NSString).substringWithRange(NSRange(location: 0, length: l == 1 ? 0 : 1))
         }
-        setReturnKeyType("Auto")
         
         let attributedText = NSMutableAttributedString(string: "\(game.currentWord)\(inputWord.text)")
         
@@ -121,23 +119,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
             attributedText.addAttributes([NSForegroundColorAttributeName: UIColor.redColor()], range: NSRange(location: l - 1, length: 1))
         }
         currentWord.attributedText = attributedText
-    }
-    
-    func setReturnKeyType(type: String) {
-        if type == "Go" {
-            inputWord.returnKeyType = UIReturnKeyType.Go
-        } else if type == "Default" {
-            inputWord.returnKeyType = UIReturnKeyType.Default
-        } else if type == "Auto" {
-            // Set type based on input.
-            if countElements(inputWord.text) > 0 {
-                return setReturnKeyType("Go")
-            }
-            return setReturnKeyType("Default")
-        }
-        
-        inputWord.resignFirstResponder()
-        inputWord.becomeFirstResponder()
     }
     
     // TODO: Make DRY

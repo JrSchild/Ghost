@@ -35,6 +35,8 @@ class MainViewController: UIViewController {
             users = ["Joey", "Ally", "Kaylie", "Lisa", "Lo", "Wilene", "Bas"]
             writeUsers(users)
         }
+        inputPlayer1.text = users[0]
+        inputPlayer2.text = users[1]
 
         // Do any additional setup after loading the view.
     }

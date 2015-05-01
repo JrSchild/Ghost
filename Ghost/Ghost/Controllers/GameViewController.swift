@@ -37,6 +37,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         super.init(coder: aDecoder)
     }
     
+    // Reset all variables, create and start a new game.
     func start() {
         inputWord.text = ""
         currentWord.text = ""
@@ -54,14 +55,12 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Remove cursor, set delegate of inputword, set usernames and start.
         inputWord.tintColor = UIColor.clearColor()
-        inputWord.autocorrectionType = UITextAutocorrectionType.No
         inputWord.delegate = self
-        inputWord.addTarget(self, action: "keyPressed:", forControlEvents: UIControlEvents.EditingChanged)
-        setReturnKeyType("Default")
         labelUser1.text = user1
         labelUser2.text = user2
-        
+        setReturnKeyType("Default")
         start()
     }
     
@@ -104,7 +103,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    func keyPressed(sender: NSNotification) {
+    @IBAction func keyPressed(sender: UITextField) {
         var l = countElements(inputWord.text)
         let inputChar = inputWord.text.lowercaseString
         

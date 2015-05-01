@@ -55,6 +55,12 @@ class MainViewController: UIViewController {
             var gameViewController = segue.destinationViewController as GameViewController;
             gameViewController.user1 = "\(inputPlayer1!.text)"
             gameViewController.user2 = "\(inputPlayer2!.text)"
+            
+            // If the users didn't exist yet, add them and store. TODO: Move this to the users singleton?
+            let currUsers = users.count
+            if !contains(users, gameViewController.user1) { users.append(gameViewController.user1) }
+            if !contains(users, gameViewController.user2) { users.append(gameViewController.user2) }
+            if users.count > currUsers { writeUsers(users) }
         }
     }
     
@@ -87,7 +93,7 @@ class MainViewController: UIViewController {
     }
 }
 
-// TODO: Move this code elsewhere?
+// TODO: Move to users singleton?
 let writableDirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
 let usersPath = writableDirs![0].stringByAppendingPathComponent("users")
 

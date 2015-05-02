@@ -72,6 +72,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         game.guess(inputWord.text)
         currentWord.text = game.currentWord
         inputWord.text = ""
+        inputWord.resignFirstResponder()
+        inputWord.becomeFirstResponder()
         
         if let winner = game.winner() {
             var score : Int

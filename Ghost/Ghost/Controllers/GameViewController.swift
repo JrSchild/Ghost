@@ -48,11 +48,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         setScore()
     }
     
-    //    // Might not be necessary
-    //    deinit {
-    //        inputWord.resignFirstResponder()
-    //    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,10 +89,11 @@ class GameViewController: UIViewController, UITextFieldDelegate {
                 refreshAlert.addButtonWithTitle("OK")
                 refreshAlert.show()
                 self.dismissViewControllerAnimated(false, completion: nil)
+            } else {
+                userStart = !userStart
+                start()
             }
             
-            userStart = !userStart
-            start()
         } else {
             setCurrentPlayer(game.currentUser)
         }

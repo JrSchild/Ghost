@@ -100,3 +100,4 @@ Show a list of highscores.
 - http://stackoverflow.com/questions/24836369/programmatically-create-and-show-uipickerview
 - http://stackoverflow.com/a/26819547
 - http://stackoverflow.com/a/24098149
+- http://stackoverflow.com/a/13734473

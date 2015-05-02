@@ -43,6 +43,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         currentWord.text = ""
         game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         game.currentUser = userStart
+        inputWord.becomeFirstResponder()
         setCurrentPlayer(game.currentUser)
         setScore()
     }
@@ -89,9 +90,10 @@ class GameViewController: UIViewController, UITextFieldDelegate {
             if score >= countElements(finalWord) {
                 println("GAME OVER")
                 let refreshAlert = UIAlertView()
-                refreshAlert.title = "GAME OVER"
+                refreshAlert.title = "GAME OVER \(winner ? user1 : user2) Won"
                 refreshAlert.addButtonWithTitle("OK")
                 refreshAlert.show()
+                self.dismissViewControllerAnimated(false, completion: nil)
             }
             
             userStart = !userStart

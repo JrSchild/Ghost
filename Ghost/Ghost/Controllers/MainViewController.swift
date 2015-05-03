@@ -18,18 +18,9 @@ class MainViewController: UIViewController {
     // TODO: Cache this in a singleton so it doesn't need to reload every time this view initializes.
     var users = loadUsers()
     
-    @IBAction func pickerUser1(sender: UIButton) {
-        showPicker()
-        currentPicker = inputPlayer1
-    }
-    
-    @IBAction func pickerUser2(sender: UIButton) {
-        showPicker()
-        currentPicker = inputPlayer2
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // TEMP: If no users have been loaded, put some dummy data.
         if users.count == 0 {
             users = ["Joey", "Ally", "Kaylie", "Lisa", "Lo", "Wilene", "Bas"]
@@ -37,8 +28,6 @@ class MainViewController: UIViewController {
         }
         inputPlayer1.text = users[0]
         inputPlayer2.text = users[1]
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +42,8 @@ class MainViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        // When a game starts set the input of the player names to the new GameViewController.
         if segue.identifier == "startGame" {
             var gameViewController = segue.destinationViewController as GameViewController;
             gameViewController.user1 = "\(inputPlayer1!.text)"
@@ -66,6 +57,7 @@ class MainViewController: UIViewController {
         }
     }
     
+    // Picker delegate methods.
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -78,15 +70,26 @@ class MainViewController: UIViewController {
         return "\(users[row])"
     }
     
+    // When the picker closes set the text to the input field and hide it.
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
         currentPicker.text = users[row]
         userPicker.hidden = true
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        userPicker.hidden = false
-        return false
+    // Hide picker when input field is focused.
+    @IBAction func touchUpInside(sender: UITextField) {
+        userPicker.hidden = true
+    }
+    
+    // Show the username picker for player 1 and player 2.
+    @IBAction func pickerUser1(sender: UIButton) {
+        showPicker()
+        currentPicker = inputPlayer1
+    }
+    @IBAction func pickerUser2(sender: UIButton) {
+        showPicker()
+        currentPicker = inputPlayer2
     }
     
     func showPicker() {
@@ -96,9 +99,11 @@ class MainViewController: UIViewController {
 }
 
 // TODO: Move to users singleton?
+// Get the writable directory and path for the users file.
 let writableDirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
 let usersPath = writableDirs![0].stringByAppendingPathComponent("users")
 
+// Read the users file and return them in an array of strings.
 func loadUsers() -> [String] {
     if var text = String(contentsOfFile: usersPath, encoding: NSUTF8StringEncoding, error: nil) {
         return text.componentsSeparatedByString("\n")
@@ -106,6 +111,7 @@ func loadUsers() -> [String] {
     return []
 }
 
+// Store users to the users file. Join them by line breaks.
 func writeUsers(users: [String]) {
     "\n".join(users).writeToFile(usersPath, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
 }

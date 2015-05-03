@@ -12,6 +12,8 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var inputPlayer1: UITextField!
     @IBOutlet weak var inputPlayer2: UITextField!
+    @IBOutlet weak var pickerPlayer1: UIButton!
+    @IBOutlet weak var pickerPlayer2: UIButton!
     @IBOutlet weak var userPicker: UIPickerView!
     var currentPicker : UITextField!
     
@@ -45,7 +47,7 @@ class MainViewController: UIViewController {
 
         // When a game starts set the input of the player names to the new GameViewController.
         if segue.identifier == "startGame" {
-            var gameViewController = segue.destinationViewController as GameViewController;
+            var gameViewController = segue.destinationViewController as GameViewController
             gameViewController.user1 = "\(inputPlayer1!.text)"
             gameViewController.user2 = "\(inputPlayer2!.text)"
             
@@ -83,13 +85,9 @@ class MainViewController: UIViewController {
     }
     
     // Show the username picker for player 1 and player 2.
-    @IBAction func pickerUser1(sender: UIButton) {
+    @IBAction func showPicker(sender: UIButton) {
+        currentPicker = sender == pickerPlayer1 ? inputPlayer1 : inputPlayer2
         showPicker()
-        currentPicker = inputPlayer1
-    }
-    @IBAction func pickerUser2(sender: UIButton) {
-        showPicker()
-        currentPicker = inputPlayer2
     }
     
     func showPicker() {

@@ -138,7 +138,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pickerUser1:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="88n-41-wiR"/>
+                                    <action selector="showPicker:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="KEB-BR-EDu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KV6-di-D4P">
@@ -151,8 +151,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pickerUser1:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="9at-81-h75"/>
-                                    <action selector="pickerUser2:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="nNm-6e-Hxl"/>
+                                    <action selector="showPicker:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="lJZ-qc-g0R"/>
                                 </connections>
                             </button>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMF-9V-1pc">
@@ -187,6 +186,8 @@
                     <connections>
                         <outlet property="inputPlayer1" destination="ebI-XJ-t6N" id="O3O-Uu-YBq"/>
                         <outlet property="inputPlayer2" destination="itN-9L-oFi" id="h3c-as-vjE"/>
+                        <outlet property="pickerPlayer1" destination="G3k-FX-eVH" id="d6E-2H-5ay"/>
+                        <outlet property="pickerPlayer2" destination="KV6-di-D4P" id="pyJ-K3-dlb"/>
                         <outlet property="userPicker" destination="QMF-9V-1pc" id="Mj9-pm-09k"/>
                     </connections>
                 </viewController>

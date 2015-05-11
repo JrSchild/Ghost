@@ -10,26 +10,34 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    @IBOutlet weak var inputPlayer1: UITextField!
-    @IBOutlet weak var inputPlayer2: UITextField!
-    @IBOutlet weak var pickerPlayer1: UIButton!
-    @IBOutlet weak var pickerPlayer2: UIButton!
-    @IBOutlet weak var userPicker: UIPickerView!
+    @IBOutlet weak var inputPlayer1 : UITextField!
+    @IBOutlet weak var inputPlayer2 : UITextField!
+    @IBOutlet weak var pickerPlayer1 : UIButton!
+    @IBOutlet weak var pickerPlayer2 : UIButton!
+    @IBOutlet weak var userPicker : UIPickerView!
+    
     var currentPicker : UITextField!
     
     // TODO: Cache this in a singleton so it doesn't need to reload every time this view initializes.
     var users = loadUsers()
+    var usernames : [String]
+    
+    required init(coder aDecoder: NSCoder) {
+        
+        // TEMP: If no users have been loaded, put some dummy data.
+        if (users.count == 0) {
+            users = ["Joey": 0, "Ally": 0, "Kaylie": 0, "Lisa": 0, "Lo": 0, "Wilene": 0, "Bas": 0]
+            writeUsers(users)
+        }
+        usernames = Array(users.keys)
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TEMP: If no users have been loaded, put some dummy data.
-        if users.count == 0 {
-            users = ["Joey", "Ally", "Kaylie", "Lisa", "Lo", "Wilene", "Bas"]
-            writeUsers(users)
-        }
-        inputPlayer1.text = users[0]
-        inputPlayer2.text = users[1]
+        inputPlayer1.text = usernames[0]
+        inputPlayer2.text = usernames[1]
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,9 +61,10 @@ class MainViewController: UIViewController {
             
             // If the users didn't exist yet, add them and store. TODO: Move this to the users singleton?
             let currUsers = users.count
-            if !contains(users, gameViewController.user1) { users.append(gameViewController.user1) }
-            if !contains(users, gameViewController.user2) { users.append(gameViewController.user2) }
+            if users[gameViewController.user1] == nil { users[gameViewController.user1] = 0 }
+            if users[gameViewController.user2] == nil { users[gameViewController.user2] = 0 }
             if users.count > currUsers { writeUsers(users) }
+            usernames = Array(users.keys)
         }
     }
     
@@ -65,17 +74,17 @@ class MainViewController: UIViewController {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return users.count
+        return usernames.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return "\(users[row])"
+        return "\(usernames[row])"
     }
     
     // When the picker closes set the text to the input field and hide it.
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
-        currentPicker.text = users[row]
+        currentPicker.text = usernames[row]
         userPicker.hidden = true
     }
     
@@ -97,19 +106,18 @@ class MainViewController: UIViewController {
 }
 
 // TODO: Move to users singleton?
-// Get the writable directory and path for the users file.
-let writableDirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
-let usersPath = writableDirs![0].stringByAppendingPathComponent("users")
+let defaults = NSUserDefaults.standardUserDefaults()
 
-// Read the users file and return them in an array of strings.
-func loadUsers() -> [String] {
-    if var text = String(contentsOfFile: usersPath, encoding: NSUTF8StringEncoding, error: nil) {
-        return text.componentsSeparatedByString("\n")
-    }
-    return []
+// Store list of users in NSUserDefaults
+func writeUsers(users: [String:Int]) {
+    defaults.setObject(users, forKey: "users")
+    defaults.synchronize()
 }
 
-// Store users to the users file. Join them by line breaks.
-func writeUsers(users: [String]) {
-    "\n".join(users).writeToFile(usersPath, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+// Load list of users from NSUserDefaults
+func loadUsers() -> [String:Int] {
+    if let users = defaults.objectForKey("users") as? [String:Int] {
+        return users;
+    }
+    return [String:Int]()
 }

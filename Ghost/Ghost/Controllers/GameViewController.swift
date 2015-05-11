@@ -10,15 +10,15 @@ import UIKit
 
 class GameViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var labelUser1: UILabel!
-    @IBOutlet weak var labelUser2: UILabel!
-    @IBOutlet weak var inputWord: UITextField!
-    @IBOutlet weak var currentWord: UILabel!
-    @IBOutlet weak var scoreUser1Label: UILabel!
-    @IBOutlet weak var scoreUser2Label: UILabel!
+    @IBOutlet weak var labelUser1 : UILabel!
+    @IBOutlet weak var labelUser2 : UILabel!
+    @IBOutlet weak var inputWord : UITextField!
+    @IBOutlet weak var currentWord : UILabel!
+    @IBOutlet weak var scoreUser1Label : UILabel!
+    @IBOutlet weak var scoreUser2Label : UILabel!
     
-    let dictionary: DictionaryModel
-    var game: GameModel!
+    let dictionary : DictionaryModel
+    var game : GameModel!
     var user1 : String!
     var user2 : String!
     var scoreUser1 = 0

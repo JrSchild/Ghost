@@ -58,6 +58,7 @@ class MainViewController: UIViewController {
             var gameViewController = segue.destinationViewController as GameViewController
             gameViewController.user1 = "\(inputPlayer1!.text)"
             gameViewController.user2 = "\(inputPlayer2!.text)"
+            gameViewController.mainViewController = self
             
             // If the users didn't exist yet, add them and store. TODO: Move this to the users singleton?
             let currUsers = users.count
@@ -102,6 +103,17 @@ class MainViewController: UIViewController {
     func showPicker() {
         self.view.endEditing(true)
         userPicker.hidden = false
+    }
+    
+    func winner(name: String) {
+        let refreshAlert = UIAlertView()
+        refreshAlert.title = "GAME OVER \(name) Won"
+        refreshAlert.addButtonWithTitle("OK")
+        refreshAlert.show()
+        
+        // Up the score of the winner with one, and save it.
+        users[name]?++
+        writeUsers(users)
     }
 }
 

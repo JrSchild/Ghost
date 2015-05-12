@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sortUsernames()
         inputPlayer1.text = usernames[0]
         inputPlayer2.text = usernames[1]
     }
@@ -115,7 +116,14 @@ class MainViewController: UIViewController {
         
         // Up the score of the winner with one, and save it.
         users[name]?++
+        sortUsernames()
         writeUsers(users)
+    }
+    
+    func sortUsernames() {
+        usernames = sorted(usernames, { user1, user2 in
+            self.users[user1] > self.users[user2]
+        })
     }
 }
 

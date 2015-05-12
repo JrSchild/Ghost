@@ -29,7 +29,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
         let username = self.mainViewController.usernames[indexPath.row]
-        cell.textLabel?.text = username
+        cell.textLabel?.text = "\(indexPath.row + 1). \(username)"
         
         // Create label for the score of user
         // Snippet partly from http://stackoverflow.com/a/29335837

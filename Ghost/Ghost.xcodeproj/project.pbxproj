@@ -13,6 +13,7 @@
 		F22640C71AF2391700D61DD5 /* english in Resources */ = {isa = PBXBuildFile; fileRef = F22640C51AF2391700D61DD5 /* english */; };
 		F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */; };
 		F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035E1AEF966D008DF2AD /* GameModel.swift */; };
+		F2663F9E1B0139C100B59BB6 /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */; };
 		F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E781ADFEEA00006DAAA /* AppDelegate.swift */; };
 		F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7C1ADFEEA00006DAAA /* Main.storyboard */; };
 		F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7F1ADFEEA00006DAAA /* Images.xcassets */; };
@@ -36,6 +37,7 @@
 		F22640C51AF2391700D61DD5 /* english */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = english; path = Dictionaries/english; sourceTree = "<group>"; };
 		F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryModel.swift; path = Models/DictionaryModel.swift; sourceTree = "<group>"; };
 		F24B035E1AEF966D008DF2AD /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameModel.swift; path = Models/GameModel.swift; sourceTree = "<group>"; };
+		F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighscoreViewController.swift; path = Controllers/HighscoreViewController.swift; sourceTree = "<group>"; };
 		F2998E731ADFEEA00006DAAA /* Ghost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2998E771ADFEEA00006DAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2998E781ADFEEA00006DAAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			children = (
 				F22640BF1AF238CB00D61DD5 /* GameViewController.swift */,
 				F22640C01AF238CB00D61DD5 /* MainViewController.swift */,
+				F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */,
 				F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */,
 				F22640C21AF238CB00D61DD5 /* MainViewController.swift in Sources */,
+				F2663F9E1B0139C100B59BB6 /* HighscoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
         
         // TEMP: If no users have been loaded, put some dummy data.
         if (users.count == 0) {
-            users = ["Joey": 0, "Ally": 0, "Kaylie": 0, "Lisa": 0, "Lo": 0, "Wilene": 0, "Bas": 0]
+            users = ["Joey": 8, "Ally": 7, "Kaylie": 7, "Lisa": 3, "Lo": 1, "Wilene": 0, "Bas": 0]
             writeUsers(users)
         }
         usernames = Array(users.keys)
@@ -66,6 +66,8 @@ class MainViewController: UIViewController {
             if users[gameViewController.user2] == nil { users[gameViewController.user2] = 0 }
             if users.count > currUsers { writeUsers(users) }
             usernames = Array(users.keys)
+        } else if segue.identifier == "showHighscores" {
+            (segue.destinationViewController as HighscoreViewController).mainViewController = self
         }
     }
     
@@ -128,6 +130,8 @@ func writeUsers(users: [String:Int]) {
 
 // Load list of users from NSUserDefaults
 func loadUsers() -> [String:Int] {
+//    defaults.removeObjectForKey("users")
+    
     if let users = defaults.objectForKey("users") as? [String:Int] {
         return users;
     }

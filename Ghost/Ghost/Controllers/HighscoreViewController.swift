@@ -12,7 +12,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
-    var mainViewController: MainViewController!
+    var users: UserModel!
     let accessoryFontSize: CGFloat = 14
     
     override func viewDidLoad() {
@@ -22,13 +22,13 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.mainViewController.usernames.count;
+        return self.users.usernames.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
-        let username = self.mainViewController.usernames[indexPath.row]
+        let username = self.users.usernames[indexPath.row]
         cell.textLabel?.text = "\(indexPath.row + 1). \(username)"
         
         // Create label for the score of user
@@ -36,7 +36,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         let label = UILabel()
         label.font = UIFont.systemFontOfSize(accessoryFontSize)
         label.textAlignment = NSTextAlignment.Center
-        label.text = "\(self.mainViewController.users[username]!)"
+        label.text = "\(self.users.users[username]!)"
         label.sizeToFit()
         
         cell.accessoryView = label;

@@ -18,27 +18,13 @@ class MainViewController: UIViewController {
     
     var currentPicker : UITextField!
     
-    // TODO: Cache this in a singleton so it doesn't need to reload every time this view initializes.
-    var users = loadUsers()
-    var usernames : [String]
-    
-    required init(coder aDecoder: NSCoder) {
-        
-        // TEMP: If no users have been loaded, put some dummy data.
-        if (users.count == 0) {
-            users = ["Joey": 8, "Ally": 7, "Kaylie": 7, "Lisa": 3, "Lo": 1, "Wilene": 0, "Bas": 0]
-            writeUsers(users)
-        }
-        usernames = Array(users.keys)
-        
-        super.init(coder: aDecoder)
-    }
+    let users = UserModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sortUsernames()
-        inputPlayer1.text = usernames[0]
-        inputPlayer2.text = usernames[1]
+        
+        inputPlayer1.text = users.usernames[0]
+        inputPlayer2.text = users.usernames[1]
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,14 +47,11 @@ class MainViewController: UIViewController {
             gameViewController.user2 = "\(inputPlayer2!.text)"
             gameViewController.mainViewController = self
             
-            // If the users didn't exist yet, add them and store. TODO: Move this to the users singleton?
-            let currUsers = users.count
-            if users[gameViewController.user1] == nil { users[gameViewController.user1] = 0 }
-            if users[gameViewController.user2] == nil { users[gameViewController.user2] = 0 }
-            if users.count > currUsers { writeUsers(users) }
-            usernames = Array(users.keys)
+            // If the users didn't exist yet, add them and store.
+            users.addUserIfNotExists(gameViewController.user1)
+            users.addUserIfNotExists(gameViewController.user2)
         } else if segue.identifier == "showHighscores" {
-            (segue.destinationViewController as HighscoreViewController).mainViewController = self
+            (segue.destinationViewController as HighscoreViewController).users = users
         }
     }
     
@@ -78,17 +61,17 @@ class MainViewController: UIViewController {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return usernames.count
+        return users.usernames.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return "\(usernames[row])"
+        return "\(users.usernames[row])"
     }
     
-    // When the picker closes set the text to the input field and hide it.
+    // When the picker closes, set the text to the input field and hide it.
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
-        currentPicker.text = usernames[row]
+        currentPicker.text = users.usernames[row]
         userPicker.hidden = true
     }
     
@@ -115,33 +98,6 @@ class MainViewController: UIViewController {
         refreshAlert.show()
         
         // Up the score of the winner with one, and save it.
-        users[name]?++
-        sortUsernames()
-        writeUsers(users)
+        users.up(name)
     }
-    
-    func sortUsernames() {
-        usernames = sorted(usernames, { user1, user2 in
-            self.users[user1] > self.users[user2]
-        })
-    }
-}
-
-// TODO: Move to users singleton?
-let defaults = NSUserDefaults.standardUserDefaults()
-
-// Store list of users in NSUserDefaults
-func writeUsers(users: [String:Int]) {
-    defaults.setObject(users, forKey: "users")
-    defaults.synchronize()
-}
-
-// Load list of users from NSUserDefaults
-func loadUsers() -> [String:Int] {
-//    defaults.removeObjectForKey("users")
-    
-    if let users = defaults.objectForKey("users") as? [String:Int] {
-        return users;
-    }
-    return [String:Int]()
 }

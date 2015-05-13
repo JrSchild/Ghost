@@ -14,6 +14,7 @@
 		F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */; };
 		F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035E1AEF966D008DF2AD /* GameModel.swift */; };
 		F2663F9E1B0139C100B59BB6 /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */; };
+		F2663FA01B02932900B59BB6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2663F9F1B02932900B59BB6 /* UserModel.swift */; };
 		F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2998E781ADFEEA00006DAAA /* AppDelegate.swift */; };
 		F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7C1ADFEEA00006DAAA /* Main.storyboard */; };
 		F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2998E7F1ADFEEA00006DAAA /* Images.xcassets */; };
@@ -38,6 +39,7 @@
 		F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryModel.swift; path = Models/DictionaryModel.swift; sourceTree = "<group>"; };
 		F24B035E1AEF966D008DF2AD /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameModel.swift; path = Models/GameModel.swift; sourceTree = "<group>"; };
 		F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighscoreViewController.swift; path = Controllers/HighscoreViewController.swift; sourceTree = "<group>"; };
+		F2663F9F1B02932900B59BB6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = Models/UserModel.swift; sourceTree = "<group>"; };
 		F2998E731ADFEEA00006DAAA /* Ghost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2998E771ADFEEA00006DAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2998E781ADFEEA00006DAAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */,
 				F24B035E1AEF966D008DF2AD /* GameModel.swift */,
+				F2663F9F1B02932900B59BB6 /* UserModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F22640C11AF238CB00D61DD5 /* GameViewController.swift in Sources */,
+				F2663FA01B02932900B59BB6 /* UserModel.swift in Sources */,
 				F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */,
 				F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */,
 				F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */,

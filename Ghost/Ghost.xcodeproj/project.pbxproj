@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		F22640C11AF238CB00D61DD5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22640BF1AF238CB00D61DD5 /* GameViewController.swift */; };
 		F22640C21AF238CB00D61DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22640C01AF238CB00D61DD5 /* MainViewController.swift */; };
-		F22640C61AF2391700D61DD5 /* dutch in Resources */ = {isa = PBXBuildFile; fileRef = F22640C41AF2391700D61DD5 /* dutch */; };
-		F22640C71AF2391700D61DD5 /* english in Resources */ = {isa = PBXBuildFile; fileRef = F22640C51AF2391700D61DD5 /* english */; };
+		F22640C61AF2391700D61DD5 /* Dutch in Resources */ = {isa = PBXBuildFile; fileRef = F22640C41AF2391700D61DD5 /* Dutch */; };
+		F22640C71AF2391700D61DD5 /* English in Resources */ = {isa = PBXBuildFile; fileRef = F22640C51AF2391700D61DD5 /* English */; };
+		F23B28531B0507C900EEB4BA /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B28521B0507C900EEB4BA /* LanguageModel.swift */; };
 		F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */; };
 		F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B035E1AEF966D008DF2AD /* GameModel.swift */; };
 		F2663F9E1B0139C100B59BB6 /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */; };
@@ -34,8 +35,9 @@
 /* Begin PBXFileReference section */
 		F22640BF1AF238CB00D61DD5 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Controllers/GameViewController.swift; sourceTree = "<group>"; };
 		F22640C01AF238CB00D61DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
-		F22640C41AF2391700D61DD5 /* dutch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dutch; path = Dictionaries/dutch; sourceTree = "<group>"; };
-		F22640C51AF2391700D61DD5 /* english */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = english; path = Dictionaries/english; sourceTree = "<group>"; };
+		F22640C41AF2391700D61DD5 /* Dutch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Dutch; path = Dictionaries/Dutch; sourceTree = "<group>"; };
+		F22640C51AF2391700D61DD5 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = English; path = Dictionaries/English; sourceTree = "<group>"; };
+		F23B28521B0507C900EEB4BA /* LanguageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageModel.swift; path = Models/LanguageModel.swift; sourceTree = "<group>"; };
 		F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryModel.swift; path = Models/DictionaryModel.swift; sourceTree = "<group>"; };
 		F24B035E1AEF966D008DF2AD /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameModel.swift; path = Models/GameModel.swift; sourceTree = "<group>"; };
 		F2663F9D1B0139C100B59BB6 /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighscoreViewController.swift; path = Controllers/HighscoreViewController.swift; sourceTree = "<group>"; };
@@ -81,8 +83,8 @@
 		F22640C31AF238EC00D61DD5 /* Dictionaries */ = {
 			isa = PBXGroup;
 			children = (
-				F22640C41AF2391700D61DD5 /* dutch */,
-				F22640C51AF2391700D61DD5 /* english */,
+				F22640C41AF2391700D61DD5 /* Dutch */,
+				F22640C51AF2391700D61DD5 /* English */,
 			);
 			name = Dictionaries;
 			sourceTree = "<group>";
@@ -150,6 +152,7 @@
 				F24B035D1AEF966D008DF2AD /* DictionaryModel.swift */,
 				F24B035E1AEF966D008DF2AD /* GameModel.swift */,
 				F2663F9F1B02932900B59BB6 /* UserModel.swift */,
+				F23B28521B0507C900EEB4BA /* LanguageModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -235,9 +238,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F22640C71AF2391700D61DD5 /* english in Resources */,
+				F22640C71AF2391700D61DD5 /* English in Resources */,
 				F2998E7E1ADFEEA00006DAAA /* Main.storyboard in Resources */,
-				F22640C61AF2391700D61DD5 /* dutch in Resources */,
+				F22640C61AF2391700D61DD5 /* Dutch in Resources */,
 				F2998E831ADFEEA00006DAAA /* LaunchScreen.xib in Resources */,
 				F2998E801ADFEEA00006DAAA /* Images.xcassets in Resources */,
 			);
@@ -260,6 +263,7 @@
 				F22640C11AF238CB00D61DD5 /* GameViewController.swift in Sources */,
 				F2663FA01B02932900B59BB6 /* UserModel.swift in Sources */,
 				F24B03601AEF966D008DF2AD /* GameModel.swift in Sources */,
+				F23B28531B0507C900EEB4BA /* LanguageModel.swift in Sources */,
 				F24B035F1AEF966D008DF2AD /* DictionaryModel.swift in Sources */,
 				F2998E791ADFEEA00006DAAA /* AppDelegate.swift in Sources */,
 				F22640C21AF238CB00D61DD5 /* MainViewController.swift in Sources */,

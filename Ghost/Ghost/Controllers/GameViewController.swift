@@ -17,7 +17,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scoreUser1Label : UILabel!
     @IBOutlet weak var scoreUser2Label : UILabel!
     
-    let dictionary : DictionaryModel
+    var dictionary : DictionaryModel!
     var game : GameModel!
     var mainViewController : MainViewController!
     var user1 : String!
@@ -34,14 +34,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     // Indicates which user starts the next round
     var userStart = true
     
-    required init(coder aDecoder: NSCoder) {
-        
-        // DictionaryModel should throw an error when unable to load dictionary.
-        dictionary = DictionaryModel(words: readDictionary()!)
-        
-        super.init(coder: aDecoder)
-    }
-    
     // Reset all variables, create and start a new game.
     func start() {
         inputWord.text = ""
@@ -55,6 +47,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dictionary = DictionaryModel(words: readDictionary(self.mainViewController.languages.language)!)
         
         // Remove cursor, set delegate of inputword, set usernames and start.
         inputWord.tintColor = UIColor.clearColor()
@@ -141,8 +135,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
 }
 
 // Read the dictionary and return its contents.
-func readDictionary() -> String? {
-    let path = NSBundle.mainBundle().pathForResource("english", ofType: nil)
+func readDictionary(language: String) -> String? {
+    let path = NSBundle.mainBundle().pathForResource(language, ofType: nil)
     
     return String(contentsOfFile:path!, encoding: NSUTF8StringEncoding, error: nil)
 }

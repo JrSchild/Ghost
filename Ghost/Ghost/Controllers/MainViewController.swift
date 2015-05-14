@@ -21,13 +21,15 @@ class MainViewController: UIViewController {
     var currentPicker : UITextField!
     
     let users = UserModel()
-    let languages = ["English", "Dutch"]
+    let languages = LanguageModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         inputPlayer1.text = users.usernames[0]
         inputPlayer2.text = users.usernames[1]
+        
+        pickerLanguage.setTitle(languages.language, forState: UIControlState.Normal)
     }
 
     // Un-focus the textfield when tapped outside
@@ -63,7 +65,7 @@ class MainViewController: UIViewController {
         if pickerView.tag == 0 {
             return users.usernames.count
         } else if pickerView.tag == 1 {
-            return languages.count
+            return languages.languages.count
         }
         return 0
     }
@@ -72,7 +74,7 @@ class MainViewController: UIViewController {
         if pickerView.tag == 0 {
             return "\(users.usernames[row])"
         } else if pickerView.tag == 1 {
-            return languages[row]
+            return languages.languages[row]
         }
         return ""
     }
@@ -84,7 +86,8 @@ class MainViewController: UIViewController {
             currentPicker.text = users.usernames[row]
             userPicker.hidden = true
         } else if pickerView.tag == 1 {
-            pickerLanguage.setTitle(languages[row], forState: UIControlState.Normal)
+            pickerLanguage.setTitle(languages.languages[row], forState: UIControlState.Normal)
+            languages.setLanguage(languages.languages[row])
             languagePicker.hidden = true
         }
     }

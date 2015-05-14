@@ -29,7 +29,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     let userNotTurn = UIColor.blackColor()
     
     // Validate the input, if no char is entered yet validate first char, otherwise both.
-    let inputTest = NSPredicate(format:"SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
+    let inputTest = NSPredicate(format: "SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     
     // Indicates which user starts the next round
     var userStart = true
@@ -62,11 +62,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         labelUser1.text = user1
         labelUser2.text = user2
         start()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

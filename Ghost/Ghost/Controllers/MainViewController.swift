@@ -15,10 +15,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pickerPlayer1 : UIButton!
     @IBOutlet weak var pickerPlayer2 : UIButton!
     @IBOutlet weak var userPicker : UIPickerView!
+    @IBOutlet weak var languagePicker: UIPickerView!
+    @IBOutlet weak var pickerLanguage: UIButton!
     
     var currentPicker : UITextField!
     
     let users = UserModel()
+    let languages = ["English", "Dutch"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +30,11 @@ class MainViewController: UIViewController {
         inputPlayer2.text = users.usernames[1]
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // Un-focus the textfield when tapped outside
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
         userPicker.hidden = true
+        languagePicker.hidden = true
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -61,34 +60,54 @@ class MainViewController: UIViewController {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return users.usernames.count
+        if pickerView.tag == 0 {
+            return users.usernames.count
+        } else if pickerView.tag == 1 {
+            return languages.count
+        }
+        return 0
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return "\(users.usernames[row])"
+        if pickerView.tag == 0 {
+            return "\(users.usernames[row])"
+        } else if pickerView.tag == 1 {
+            return languages[row]
+        }
+        return ""
     }
     
     // When the picker closes, set the text to the input field and hide it.
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
-        currentPicker.text = users.usernames[row]
-        userPicker.hidden = true
+        if pickerView.tag == 0 {
+            currentPicker.text = users.usernames[row]
+            userPicker.hidden = true
+        } else if pickerView.tag == 1 {
+            pickerLanguage.setTitle(languages[row], forState: UIControlState.Normal)
+            languagePicker.hidden = true
+        }
     }
     
     // Hide picker when input field is focused.
     @IBAction func touchUpInside(sender: UITextField) {
         userPicker.hidden = true
+        languagePicker.hidden = true
     }
     
     // Show the username picker for player 1 and player 2.
     @IBAction func showPicker(sender: UIButton) {
         currentPicker = sender == pickerPlayer1 ? inputPlayer1 : inputPlayer2
-        showPicker()
-    }
-    
-    func showPicker() {
+        
         self.view.endEditing(true)
         userPicker.hidden = false
+        languagePicker.hidden = true
+    }
+    
+    @IBAction func showLanguage(sender: UIButton) {
+        self.view.endEditing(true)
+        userPicker.hidden = true
+        languagePicker.hidden = false
     }
     
     func winner(name: String) {

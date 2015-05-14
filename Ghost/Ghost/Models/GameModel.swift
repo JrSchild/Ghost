@@ -10,17 +10,25 @@ import Foundation
 
 class GameModel
 {
+    let defaults = NSUserDefaults.standardUserDefaults()
     let dictionary : DictionaryModel
     let user1 : String
     let user2 : String
     var currentUser = true
     var currentWord = ""
     
-    init(dictionary: DictionaryModel, user1: String, user2: String) {
+    // Required to retrieve state from gameViewController when saving.
+    var gameViewController : GameViewController
+    
+    // Indicates which person started this round. Required for restoring game state after quit.
+    var userStart = true
+    
+    init(dictionary: DictionaryModel, user1: String, user2: String, gameViewController: GameViewController) {
         self.dictionary = dictionary
         self.user1 = user1
         self.user2 = user2
         self.dictionary.reset()
+        self.gameViewController = gameViewController
     }
     
     // add a letter to the current word
@@ -33,7 +41,9 @@ class GameModel
         currentWord += letter
         dictionary.filter(currentWord)
         
-        return turn()
+        turn()
+        save()
+        return currentUser
     }
     
     // returns the new player
@@ -51,5 +61,23 @@ class GameModel
     // Returns boolean indicating who won, nil if no user won.
     func winner() -> Bool? {
         return ended() ? currentUser : nil
+    }
+    
+    func save() {
+        var game = [String:AnyObject]()
+        game["user1"] = user1
+        game["user2"] = user2
+        game["currentUser"] = currentUser
+        game["currentWord"] = currentWord
+        game["scoreUser1"] = gameViewController.scoreUser1
+        game["scoreUser2"] = gameViewController.scoreUser2
+        game["userStart"] = gameViewController.userStart
+        
+        defaults.setObject(game, forKey: "game")
+        defaults.synchronize()
+    }
+    
+    func destroy() {
+        defaults.removeObjectForKey("game")
     }
 }

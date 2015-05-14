@@ -28,27 +28,32 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     let userTurn = UIColor.blueColor()
     let userNotTurn = UIColor.blackColor()
     
+    var existingGame : [String:AnyObject]!
+    
     // Validate the input, if no char is entered yet validate first char, otherwise both.
     let inputTest = NSPredicate(format: "SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     
     // Indicates which user starts the next round
     var userStart = true
     
-    // Reset all variables, create and start a new game.
-    func start() {
-        inputWord.text = ""
-        currentWord.text = ""
-        game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
-        game.currentUser = userStart
-        inputWord.becomeFirstResponder()
-        setCurrentPlayer(game.currentUser)
-        setScore()
-    }
+    // Pass through currentGame from parent controller if it has to start an existing game.
+    var currentGame : AnyObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dictionary = DictionaryModel(words: readDictionary(self.mainViewController.languages.language)!)
+        
+        if currentGame != nil {
+            game = GameModel(dictionary: dictionary, user1: currentGame!["user1"] as String, user2: currentGame!["user2"] as String, gameViewController: self)
+            game.currentWord = currentGame!["currentWord"] as String
+            game.currentUser = currentGame!["currentUser"] as Bool
+            self.user1 = game.user1
+            self.user2 = game.user2
+            self.scoreUser1 = currentGame!["scoreUser1"] as Int
+            self.scoreUser2 = currentGame!["scoreUser2"] as Int
+            self.userStart = currentGame!["userStart"] as Bool
+        }
         
         // Remove cursor, set delegate of inputword, set usernames and start.
         inputWord.tintColor = UIColor.clearColor()
@@ -56,6 +61,19 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         labelUser1.text = user1
         labelUser2.text = user2
         start()
+    }
+    
+    // Reset all variables, create and start a new game.
+    func start() {
+        if game == nil {
+            game = GameModel(dictionary: dictionary, user1: user1, user2: user2, gameViewController: self)
+            game.currentUser = userStart
+            game.save()
+        }
+        currentWord.text = game.currentWord
+        inputWord.becomeFirstResponder()
+        setCurrentPlayer(game.currentUser)
+        setScore()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -72,6 +90,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         // If there's a winner check if the game has ended otherwise change current player.
         if let winner = game.winner() {
+            game.destroy()
+            game = nil
             
             // One-up score of loser and update view.
             var score : Int

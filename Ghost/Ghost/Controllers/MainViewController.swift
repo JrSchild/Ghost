@@ -19,9 +19,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pickerLanguage: UIButton!
     
     var currentPicker : UITextField!
+    var currentGame : AnyObject!
     
     let users = UserModel()
     let languages = LanguageModel()
+    
+    required init(coder aDecoder: NSCoder) {
+        currentGame = NSUserDefaults.standardUserDefaults().objectForKey("game")
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +37,14 @@ class MainViewController: UIViewController {
         inputPlayer2.text = users.usernames[1]
         
         pickerLanguage.setTitle(languages.language, forState: UIControlState.Normal)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        // If a game is already created, start the current game.
+        if currentGame != nil {
+            self.performSegueWithIdentifier("startGame", sender: nil)
+        }
     }
 
     // Un-focus the textfield when tapped outside
@@ -47,6 +62,8 @@ class MainViewController: UIViewController {
             gameViewController.user1 = "\(inputPlayer1!.text)"
             gameViewController.user2 = "\(inputPlayer2!.text)"
             gameViewController.mainViewController = self
+            gameViewController.currentGame = currentGame
+            currentGame = nil
             
             // If the users didn't exist yet, add them and store.
             users.addUserIfNotExists(gameViewController.user1)

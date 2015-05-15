@@ -59,4 +59,23 @@ class UserModel
         defaults.setObject(users, forKey: "users")
         defaults.synchronize()
     }
+    
+    // Reset the score of all users.
+    func clearScore() {
+        
+        // Same workaround as in addUserIfNotExists
+        var usersTmp = users
+        for user in usernames {
+            usersTmp[user] = 0
+        }
+        users = usersTmp
+        sort()
+        save()
+    }
+    
+    func clearUsers() {
+        users = [String:Int]()
+        sort()
+        save()
+    }
 }

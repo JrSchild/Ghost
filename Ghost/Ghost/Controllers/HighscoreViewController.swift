@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,11 +48,26 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         return .TopAttached
     }
     
-    @IBAction func goBack(sender: AnyObject) {
+    @IBAction func goBack(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
-    @IBAction func clearHighscores(sender: AnyObject) {
-        // TODO
+    @IBAction func clearHighscores(sender: UIBarButtonItem) {
+        var sheet: UIActionSheet = UIActionSheet();
+        sheet.delegate = self;
+        sheet.addButtonWithTitle("Clear scores");
+        sheet.addButtonWithTitle("Clear users");
+        sheet.addButtonWithTitle("Cancel");
+        sheet.cancelButtonIndex = 2;
+        sheet.showInView(self.view);
+    }
+    
+    func actionSheet(sheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            self.users.clearScore()
+        } else if buttonIndex == 1 {
+            self.users.clearUsers()
+        }
+        self.tableView.reloadData()
     }
 }

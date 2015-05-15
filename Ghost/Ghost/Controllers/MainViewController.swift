@@ -106,7 +106,9 @@ class MainViewController: UIViewController {
         
         // Userpicker: set the text to the input field and hide it.
         if pickerView.tag == 0 {
-            currentPicker.text = users.usernames[row]
+            if users.usernames.count > row {
+                currentPicker.text = users.usernames[row]
+            }
             userPicker.hidden = true
         
         // Languagepicker: update button title and set the new language.

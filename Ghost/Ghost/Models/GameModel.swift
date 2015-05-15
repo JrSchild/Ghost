@@ -33,6 +33,7 @@ class GameModel
     
     // add a letter to the current word
     func guess(letter: String)  -> Bool {
+        
         // exactly one letter must be guessed
         if countElements(letter) != 1 {
             NSException.raise("Only one letter can be guessed!", format: "", arguments: getVaList([]))
@@ -53,7 +54,7 @@ class GameModel
         return currentUser
     }
     
-    // check if current word is more than three letters and inside the dictionary
+    // Check if current word is more than three letters and inside the dictionary.
     func ended() -> Bool {
         return (countElements(currentWord) > 3 && dictionary.isWord(currentWord)) || dictionary.count() == 0
     }
@@ -63,6 +64,7 @@ class GameModel
         return ended() ? currentUser : nil
     }
     
+    // Save the current gamestate.
     func save() {
         var game = [String:AnyObject]()
         game["user1"] = user1
@@ -77,6 +79,7 @@ class GameModel
         defaults.synchronize()
     }
     
+    // Destroy the saved gamestate.
     func destroy() {
         defaults.removeObjectForKey("game")
     }

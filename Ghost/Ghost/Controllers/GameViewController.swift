@@ -44,6 +44,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         dictionary = DictionaryModel(words: readDictionary(self.mainViewController.languages.language)!)
         
+        // If the mainViewController passed through an existing game, restore it.
         if currentGame != nil {
             game = GameModel(dictionary: dictionary, user1: currentGame!["user1"] as String, user2: currentGame!["user2"] as String, gameViewController: self)
             game.currentWord = currentGame!["currentWord"] as String
@@ -63,17 +64,21 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         start()
     }
     
-    // Reset all variables, create and start a new game.
+    // Start a game.
     func start() {
+        
+        // If a game hasn't been set already, create a new one.
         if game == nil {
             game = GameModel(dictionary: dictionary, user1: user1, user2: user2, gameViewController: self)
             game.currentUser = userStart
             game.save()
         }
+        
+        // Update values and focus the input so keyboard shows.
         currentWord.text = game.currentWord
-        inputWord.becomeFirstResponder()
         setCurrentPlayer(game.currentUser)
         setScore()
+        inputWord.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -140,17 +145,21 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         currentWord.attributedText = attributedText
     }
     
-    // TODO: Make DRY?
     // Update score in view. Substring the final word with the score of each user.
     func setScore() {
-        scoreUser1Label.text = finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser1)))
-        scoreUser2Label.text = finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser2)))
+        scoreUser1Label.text = getScoreText(scoreUser1)
+        scoreUser2Label.text = getScoreText(scoreUser2)
     }
     
     // Set the color of each player depending on who's turn it is.
     func setCurrentPlayer(turn: Bool) {
         labelUser1.textColor = turn ? userTurn : userNotTurn
         labelUser2.textColor = turn ? userNotTurn : userTurn
+    }
+    
+    // Return the text of the score of user. e.g. 3 returns GHO
+    func getScoreText(scoreUser: Int) -> String {
+        return finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser)))
     }
 }
 

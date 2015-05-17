@@ -37,6 +37,7 @@ class MainViewController: UIViewController {
         inputPlayer2.text = users.usernames[1]
         
         pickerLanguage.setTitle(languages.language, forState: UIControlState.Normal)
+        languagePicker.selectRow(find(languages.languages, languages.language)!, inComponent: 0, animated: false)
     }
     
     // If a game is already created, start the current game when the view appears.
@@ -75,49 +76,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    // Picker delegate methods.
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // Return the length of each pickerview.
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 0 {
-            return users.usernames.count
-        } else if pickerView.tag == 1 {
-            return languages.languages.count
-        }
-        return 0
-    }
-    
-    // Return the content of each pickerview-row
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        if pickerView.tag == 0 {
-            return "\(users.usernames[row])"
-        } else if pickerView.tag == 1 {
-            return languages.languages[row]
-        }
-        return ""
-    }
-    
-    // When the picker closes
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
-    {
-        
-        // Userpicker: set the text to the input field and hide it.
-        if pickerView.tag == 0 {
-            if users.usernames.count > row {
-                currentPicker.text = users.usernames[row]
-            }
-            userPicker.hidden = true
-        
-        // Languagepicker: update button title and set the new language.
-        } else if pickerView.tag == 1 {
-            pickerLanguage.setTitle(languages.languages[row], forState: UIControlState.Normal)
-            languages.setLanguage(languages.languages[row])
-            languagePicker.hidden = true
-        }
-    }
     
     // Hide picker when input field is focused.
     @IBAction func touchUpInside(sender: UITextField) {
@@ -131,6 +89,10 @@ class MainViewController: UIViewController {
         
         self.view.endEditing(true)
         userPicker.hidden = false
+        if let index = find(users.usernames, currentPicker.text) {
+            userPicker.selectRow(index, inComponent: 0, animated: true)
+        }
+        
         languagePicker.hidden = true
     }
     
@@ -152,5 +114,55 @@ class MainViewController: UIViewController {
         
         // Up the score of the winner with one, and save it.
         users.up(name)
+    }
+}
+
+// Implement PickerView protocols outside of MainViewController
+extension MainViewController: UIPickerViewDelegate {
+    
+    // Return the content of each pickerview-row
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        if pickerView.tag == 0 {
+            return "\(users.usernames[row])"
+        } else if pickerView.tag == 1 {
+            return languages.languages[row]
+        }
+        return ""
+    }
+    
+    // When the picker closes
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    {
+        
+        // Userpicker: set the text to the input field and hide it.
+        if pickerView.tag == 0 {
+            if users.usernames.count > row {
+                currentPicker.text = users.usernames[row]
+            }
+            userPicker.hidden = true
+            
+            // Languagepicker: update button title and set the new language.
+        } else if pickerView.tag == 1 {
+            pickerLanguage.setTitle(languages.languages[row], forState: UIControlState.Normal)
+            languages.setLanguage(languages.languages[row])
+            languagePicker.hidden = true
+        }
+    }
+}
+
+extension MainViewController: UIPickerViewDataSource {
+
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Return the length of each pickerview.
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 0 {
+            return users.usernames.count
+        } else if pickerView.tag == 1 {
+            return languages.languages.count
+        }
+        return 0
     }
 }

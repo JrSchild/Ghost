@@ -8,8 +8,8 @@
 
 import Foundation
 
-class UserModel
-{
+class UserModel {
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     var users : [String:Int]
     var usernames = [String]()
@@ -26,7 +26,7 @@ class UserModel
             users = ["Joey": 8, "Ally": 7, "Kaylie": 7, "Lisa": 3, "Lo": 1, "Wilene": 0, "Bas": 0]
         }
         
-        sort()
+        save()
     }
     
     func addUserIfNotExists(name: String) {
@@ -39,23 +39,21 @@ class UserModel
         var usersTmp = users
         usersTmp[name] = 0
         users = usersTmp
-        sort()
+        save()
     }
     
     func up(name: String) {
         // users[name]!++ Crashes
         users[name]? = users[name]! + 1
-        sort()
-    }
-    
-    func sort() {
-        usernames = sorted(users.keys, { user1, user2 in
-            self.users[user1] > self.users[user2]
-        })
         save()
     }
     
+    // Set list of usernames sorted by highscore and save everything.
     func save() {
+        usernames = sorted(users.keys, { user1, user2 in
+            self.users[user1] > self.users[user2]
+        })
+        
         defaults.setObject(users, forKey: "users")
         defaults.synchronize()
     }
@@ -69,13 +67,11 @@ class UserModel
             usersTmp[user] = 0
         }
         users = usersTmp
-        sort()
         save()
     }
     
     func clearUsers() {
         users = [String:Int]()
-        sort()
         save()
     }
 }

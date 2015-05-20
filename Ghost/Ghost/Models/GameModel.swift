@@ -8,8 +8,8 @@
 
 import Foundation
 
-class GameModel
-{
+class GameModel {
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     let dictionary : DictionaryModel
     let user1 : String
@@ -31,8 +31,8 @@ class GameModel
         self.gameViewController = gameViewController
     }
     
-    // add a letter to the current word
-    func guess(letter: String)  -> Bool {
+    // Add a letter to the current word.
+    func guess(letter: String) -> Bool {
         
         // exactly one letter must be guessed
         if countElements(letter) != 1 {
@@ -47,7 +47,7 @@ class GameModel
         return currentUser
     }
     
-    // returns the new player
+    // Returns the new player.
     func turn() -> Bool {
         currentUser = !currentUser
         

@@ -131,8 +131,7 @@ extension MainViewController: UIPickerViewDelegate {
     }
     
     // When the picker closes
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
-    {
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
         
         // Userpicker: set the text to the input field and hide it.
         if pickerView.tag == 0 {
@@ -141,7 +140,7 @@ extension MainViewController: UIPickerViewDelegate {
             }
             userPicker.hidden = true
             
-            // Languagepicker: update button title and set the new language.
+        // Languagepicker: update button title and set the new language.
         } else if pickerView.tag == 1 {
             pickerLanguage.setTitle(languages.languages[row], forState: UIControlState.Normal)
             languages.setLanguage(languages.languages[row])
@@ -151,7 +150,7 @@ extension MainViewController: UIPickerViewDelegate {
 }
 
 extension MainViewController: UIPickerViewDataSource {
-
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }

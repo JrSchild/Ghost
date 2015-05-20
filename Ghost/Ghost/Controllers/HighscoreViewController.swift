@@ -21,10 +21,12 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+    // Return length of content.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.users.usernames.count;
     }
     
+    // Return table-cell per content item.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
@@ -44,6 +46,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         return cell
     }
     
+    // Make sure headerbar lays under statusbar.
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return .TopAttached
     }
@@ -62,6 +65,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         sheet.showInView(self.view);
     }
     
+    // Callback for action sheet.
     func actionSheet(sheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 0 {
             self.users.clearScore()

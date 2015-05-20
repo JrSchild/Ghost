@@ -8,8 +8,8 @@
 
 import Foundation
 
-class DictionaryModel
-{
+class DictionaryModel {
+    
     private let dictionary : [String]
     private var filtered : [String]
     

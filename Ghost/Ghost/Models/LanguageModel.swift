@@ -28,6 +28,12 @@ class LanguageModel {
         save()
     }
     
+    func setLanguage(languageIndex: Int) {
+        if languages.count > languageIndex {
+            setLanguage(languages[languageIndex])
+        }
+    }
+    
     func save() {
         defaults.setObject(language, forKey: "language")
         defaults.synchronize()

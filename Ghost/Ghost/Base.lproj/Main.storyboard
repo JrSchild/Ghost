@@ -61,12 +61,22 @@
                                     <action selector="keyPressed:" destination="vXZ-lx-hvc" eventType="editingChanged" id="me9-5l-7Vx"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvM-xS-iE7">
+                                <rect key="frame" x="170" y="24" width="39" height="30"/>
+                                <state key="normal" title="menu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showOptions" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NKP-gm-7Xq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MwQ-Lw-bLb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="0ei-ol-lep"/>
                             <constraint firstItem="MDZ-l7-uKE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ba5-ja-wrL"/>
                             <constraint firstItem="rCA-34-F9e" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Bbc-Uc-PBE"/>
+                            <constraint firstItem="lvM-xS-iE7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="4" id="Ko1-jZ-fXV"/>
                             <constraint firstItem="ABg-ky-Pi1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="PS6-Ux-dW1"/>
                             <constraint firstItem="ABg-ky-Pi1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="UYK-0V-sid"/>
                             <constraint firstItem="TVm-DI-cFY" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Ymf-9j-jG7"/>
@@ -74,6 +84,7 @@
                             <constraint firstItem="rCA-34-F9e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="euX-Vh-6rw"/>
                             <constraint firstItem="MDZ-l7-uKE" firstAttribute="top" secondItem="ABg-ky-Pi1" secondAttribute="bottom" constant="8.5" id="nIW-Uq-YzC"/>
                             <constraint firstItem="rCA-34-F9e" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="269" id="oqD-k3-adm"/>
+                            <constraint firstAttribute="centerX" secondItem="lvM-xS-iE7" secondAttribute="centerX" constant="-2.5" id="w8E-wR-cbs"/>
                             <constraint firstItem="MwQ-Lw-bLb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="yDR-iJ-xox"/>
                         </constraints>
                     </view>

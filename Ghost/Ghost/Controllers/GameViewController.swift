@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController, UITextFieldDelegate {
+class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDelegate {
     
     @IBOutlet weak var labelUser1 : UILabel!
     @IBOutlet weak var labelUser2 : UILabel!
@@ -42,7 +42,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dictionary = DictionaryModel(words: readDictionary(self.mainViewController.languages.language)!)
+        loadDictionaryModel()
         
         // If the mainViewController passed through an existing game, restore it.
         if currentGame != nil {
@@ -67,7 +67,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     // Start a game.
     func start() {
         
-        // If a game hasn't been set already, create a new one.
+        // If a game hasn't been set when the view loaded, create a new one.
         if game == nil {
             game = GameModel(dictionary: dictionary, user1: user1, user2: user2, gameViewController: self)
             game.currentUser = userStart
@@ -160,6 +160,52 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     // Return the text of the score of user. e.g. 3 returns GHO
     func getScoreText(scoreUser: Int) -> String {
         return finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser)))
+    }
+    
+    func loadDictionaryModel() {
+        dictionary = DictionaryModel(words: readDictionary(self.mainViewController.languages.language)!)
+    }
+    
+    @IBAction func showOptions() {
+        var sheet: UIActionSheet = UIActionSheet();
+        sheet.delegate = self;
+        sheet.addButtonWithTitle("Restart game")
+        sheet.addButtonWithTitle("Exit game")
+        
+        // Only show the language(s) that are not the current language.
+        let languages = mainViewController.languages.languages.filter { $0 != self.mainViewController.languages.language }
+        for language in languages {
+            sheet.addButtonWithTitle(language)
+        }
+        sheet.addButtonWithTitle("Cancel");
+        sheet.cancelButtonIndex = languages.count + 2;
+        sheet.showInView(self.view);
+    }
+    
+    // Callback for action sheet.
+    func actionSheet(sheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+
+        // If user wants to restart game.
+        if buttonIndex == 0 {
+            restart()
+            
+        // If user wants to exit game.
+        } else if buttonIndex == 1 {
+            self.dismissViewControllerAnimated(false, completion: nil)
+        
+        // If chosen option is language.
+        } else if let languageIndex = find(mainViewController.languages.languages, sheet.buttonTitleAtIndex(buttonIndex)) {
+            mainViewController.languages.setLanguage(languageIndex)
+            loadDictionaryModel()
+            restart()
+        }
+    }
+    
+    func restart() {
+        game = nil
+        scoreUser1 = 0
+        scoreUser2 = 0
+        start()
     }
 }
 

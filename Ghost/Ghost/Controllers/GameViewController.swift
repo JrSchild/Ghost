@@ -45,7 +45,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         } else {
             game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         }
-    
+        
         // Remove cursor, set delegate of inputword, set usernames and start.
         inputWord.tintColor = UIColor.clearColor()
         inputWord.delegate = self
@@ -58,7 +58,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     func start() {
         
         // Update values and focus the input so keyboard shows.
-        currentWord.text = game.gameRound.currentWord
+        currentWord.text = game.round.currentWord
         setCurrentPlayer()
         setScore()
         inputWord.resignFirstResponder()
@@ -72,7 +72,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         
         // Guess current letter, update currentWord, reset input and auto-disable GO button.
         game.guess(inputWord.text)
-        currentWord.text = game.gameRound.currentWord
+        currentWord.text = game.round.currentWord
         inputWord.text = ""
         inputWord.resignFirstResponder()
         inputWord.becomeFirstResponder()
@@ -80,7 +80,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         // If there's a winner check if the game has ended otherwise change current player.
         if let winner = game.roundWinner() {
             setScore()
-
+            
             // If score is higher than current letters in final word, finish game and dismiss ViewController
             if let gameWinner = game.isGameOver() {
                 self.mainViewController.winner(gameWinner)
@@ -112,9 +112,9 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         }
         
         // Set the current word. Color the entered input red.
-        let attributedText = NSMutableAttributedString(string: "\(game.gameRound.currentWord)\(inputWord.text)")
+        let attributedText = NSMutableAttributedString(string: "\(game.round.currentWord)\(inputWord.text)")
         l = attributedText.length
-        if l > countElements(game.gameRound.currentWord) {
+        if l > countElements(game.round.currentWord) {
             attributedText.addAttributes([NSForegroundColorAttributeName: UIColor.redColor()], range: NSRange(location: l - 1, length: 1))
         }
         currentWord.attributedText = attributedText
@@ -128,7 +128,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     
     // Set the color of each player depending on who's turn it is.
     func setCurrentPlayer() {
-        let turn = game.gameRound.currentUser
+        let turn = game.round.currentUser
         
         labelUser1.textColor = turn ? userTurn : userNotTurn
         labelUser2.textColor = turn ? userNotTurn : userTurn
@@ -161,15 +161,16 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     
     // Callback for action sheet.
     func actionSheet(sheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
-
+        
         // If user wants to restart game.
         if buttonIndex == 0 {
             restart()
             
         // If user wants to exit game.
         } else if buttonIndex == 1 {
+            game.destroy()
             self.dismissViewControllerAnimated(false, completion: nil)
-        
+            
         // If chosen option is language.
         } else if let languageIndex = find(mainViewController.languages.languages, sheet.buttonTitleAtIndex(buttonIndex)) {
             mainViewController.languages.setLanguage(languageIndex)

@@ -11,7 +11,7 @@ import Foundation
 class GameModel {
     
     let dictionary : DictionaryModel
-    var gameRound : GameRoundModel
+    var round : GameRoundModel
     let finalWord = "GHOST"
     let user1 : String
     let user2 : String
@@ -25,41 +25,41 @@ class GameModel {
         self.dictionary = dictionary
         self.user1 = user1
         self.user2 = user2
-        self.gameRound = GameRoundModel(dictionary: dictionary, userStart: userStart)
+        self.round = GameRoundModel(dictionary: dictionary, userStart: userStart)
         save()
     }
     
     func newRound() {
         userStart = !userStart
-        self.gameRound = GameRoundModel(dictionary: dictionary, userStart: userStart)
+        self.round = GameRoundModel(dictionary: dictionary, userStart: userStart)
         save()
     }
     
     // Add a letter to the current word.
     func guess(letter: String) {
-        gameRound.guess(letter)
+        round.guess(letter)
         save()
     }
     
     // Returns boolean indicating who won, nil if no user won.
     func roundWinner() -> Bool? {
-        if gameRound.isEnded() {
+        if round.isEnded() {
             
             // One-up score of loser.
-            if gameRound.winner! {
+            if round.winner! {
                 ++scoreUser2
             } else {
                 ++scoreUser1
             }
-            return gameRound.winner!
+            return round.winner!
         }
         return nil
     }
     
     func isGameOver() -> String? {
-        if (gameRound.winner! ? scoreUser2 : scoreUser1) >= countElements(finalWord) {
+        if (round.winner! ? scoreUser2 : scoreUser1) >= countElements(finalWord) {
             destroy()
-            return gameRound.winner! ? user1 : user2
+            return round.winner! ? user1 : user2
         }
         return nil
     }
@@ -132,8 +132,8 @@ struct GameStorage {
         var gameData : [String:AnyObject] = [
             "user1": game.user1,
             "user2": game.user2,
-            "currentUser": game.gameRound.currentUser,
-            "currentWord": game.gameRound.currentWord,
+            "currentUser": game.round.currentUser,
+            "currentWord": game.round.currentWord,
             "scoreUser1": game.scoreUser1,
             "scoreUser2": game.scoreUser2,
             "userStart": game.userStart
@@ -149,8 +149,8 @@ struct GameStorage {
     
     static func restoreGameModel(dictionary: DictionaryModel, gameData: [String:AnyObject]) -> GameModel {
         var game = GameModel(dictionary: dictionary, user1: gameData["user1"] as String, user2: gameData["user2"] as String)
-        game.gameRound.currentWord = gameData["currentWord"] as String
-        game.gameRound.currentUser = gameData["currentUser"] as Bool
+        game.round.currentWord = gameData["currentWord"] as String
+        game.round.currentUser = gameData["currentUser"] as Bool
         game.scoreUser1 = gameData["scoreUser1"] as Int
         game.scoreUser2 = gameData["scoreUser2"] as Int
         game.userStart = gameData["userStart"] as Bool

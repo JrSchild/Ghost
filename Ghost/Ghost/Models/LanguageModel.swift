@@ -9,7 +9,7 @@
 class LanguageModel {
     
     let languages = ["English", "Dutch"]
-    var language : String
+    var language: String
     
     init() {
         if let language = Storage.load("language") as? String {

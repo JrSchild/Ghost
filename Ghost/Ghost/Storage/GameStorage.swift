@@ -14,7 +14,7 @@ struct GameStorage {
     }
     
     static func saveGameModel(game: GameModel) {
-        var gameData : [String:AnyObject] = [
+        var gameData: [String:AnyObject] = [
             "user1": game.user1,
             "user2": game.user2,
             "currentUser": game.round.currentUser,

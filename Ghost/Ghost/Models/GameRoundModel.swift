@@ -10,9 +10,9 @@ import Foundation
 
 class GameRoundModel {
     
-    let dictionary : DictionaryModel
-    var winner : Bool!
-    var currentUser : Bool
+    let dictionary: DictionaryModel
+    var winner: Bool!
+    var currentUser: Bool
     var currentWord = ""
     
     init(dictionary: DictionaryModel, userStart: Bool) {

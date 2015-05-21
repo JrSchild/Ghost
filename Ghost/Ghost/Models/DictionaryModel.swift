@@ -8,8 +8,8 @@
 
 class DictionaryModel {
     
-    private let dictionary : [String]
-    private var filtered : [String]
+    private let dictionary: [String]
+    private var filtered: [String]
     
     init(words: String) {
         dictionary = words.componentsSeparatedByString("\n")

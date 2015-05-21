@@ -10,16 +10,16 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    @IBOutlet weak var inputPlayer1 : UITextField!
-    @IBOutlet weak var inputPlayer2 : UITextField!
-    @IBOutlet weak var pickerPlayer1 : UIButton!
-    @IBOutlet weak var pickerPlayer2 : UIButton!
-    @IBOutlet weak var userPicker : UIPickerView!
+    @IBOutlet weak var inputPlayer1: UITextField!
+    @IBOutlet weak var inputPlayer2: UITextField!
+    @IBOutlet weak var pickerPlayer1: UIButton!
+    @IBOutlet weak var pickerPlayer2: UIButton!
+    @IBOutlet weak var userPicker: UIPickerView!
     @IBOutlet weak var languagePicker: UIPickerView!
     @IBOutlet weak var pickerLanguage: UIButton!
     
-    var currentPicker : UITextField!
-    var currentGame : [String:AnyObject]!
+    var currentPicker: UITextField!
+    var currentGame: [String:AnyObject]!
     
     let users = UserModel()
     let languages = LanguageModel()

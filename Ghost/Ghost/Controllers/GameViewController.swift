@@ -10,18 +10,18 @@ import UIKit
 
 class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDelegate {
     
-    @IBOutlet weak var labelUser1 : UILabel!
-    @IBOutlet weak var labelUser2 : UILabel!
-    @IBOutlet weak var inputWord : UITextField!
-    @IBOutlet weak var currentWord : UILabel!
-    @IBOutlet weak var scoreUser1Label : UILabel!
-    @IBOutlet weak var scoreUser2Label : UILabel!
+    @IBOutlet weak var labelUser1: UILabel!
+    @IBOutlet weak var labelUser2: UILabel!
+    @IBOutlet weak var inputWord: UITextField!
+    @IBOutlet weak var currentWord: UILabel!
+    @IBOutlet weak var scoreUser1Label: UILabel!
+    @IBOutlet weak var scoreUser2Label: UILabel!
     
-    var dictionary : DictionaryModel!
-    var game : GameModel!
-    var mainViewController : MainViewController!
-    var user1 : String!
-    var user2 : String!
+    var dictionary: DictionaryModel!
+    var game: GameModel!
+    var mainViewController: MainViewController!
+    var user1: String!
+    var user2: String!
     let userTurn = UIColor.blueColor()
     let userNotTurn = UIColor.blackColor()
     
@@ -29,7 +29,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     let inputTest = NSPredicate(format: "SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     
     // Pass currentGame from parent-controller if it has to start an existing game.
-    var currentGame : [String:AnyObject]!
+    var currentGame: [String:AnyObject]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

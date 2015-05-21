@@ -8,11 +8,11 @@
 
 class GameModel {
     
-    let dictionary : DictionaryModel
-    var round : GameRoundModel
+    let dictionary: DictionaryModel
+    var round: GameRoundModel
     let finalWord = "GHOST"
-    let user1 : String
-    let user2 : String
+    let user1: String
+    let user2: String
     var scoreUser1 = 0
     var scoreUser2 = 0
     

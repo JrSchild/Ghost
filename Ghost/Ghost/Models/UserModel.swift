@@ -8,7 +8,7 @@
 
 class UserModel {
     
-    var users : [String:Int]
+    var users: [String:Int]
     var usernames = [String]()
     
     init() {

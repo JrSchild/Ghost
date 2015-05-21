@@ -28,8 +28,6 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     let userTurn = UIColor.blueColor()
     let userNotTurn = UIColor.blackColor()
     
-    var existingGame : [String:AnyObject]!
-    
     // Validate the input, if no char is entered yet validate first char, otherwise both.
     let inputTest = NSPredicate(format: "SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     
@@ -123,7 +121,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         return false
     }
     
-    @IBAction func keyPressed(sender: UITextField) {
+    @IBAction func keyPressed() {
         var l = countElements(inputWord.text)
         let inputChar = inputWord.text.lowercaseString
         

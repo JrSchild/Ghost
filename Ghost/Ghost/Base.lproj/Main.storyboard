@@ -58,7 +58,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="keyPressed:" destination="vXZ-lx-hvc" eventType="editingChanged" id="me9-5l-7Vx"/>
+                                    <action selector="keyPressed" destination="vXZ-lx-hvc" eventType="editingChanged" id="uRk-fn-KFe"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvM-xS-iE7">
@@ -100,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138.5" y="135.5"/>
+            <point key="canvasLocation" x="149.5" y="179.5"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="1Q7-nM-HgZ">
@@ -128,7 +128,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="touchUpInside:" destination="N5Z-B6-IeA" eventType="touchDown" id="hfv-Yt-9tM"/>
+                                    <action selector="touchDown" destination="N5Z-B6-IeA" eventType="touchDown" id="DKG-Aa-0qN"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="itN-9L-oFi">
@@ -136,7 +136,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="touchUpInside:" destination="N5Z-B6-IeA" eventType="touchDown" id="1M7-b2-9SP"/>
+                                    <action selector="touchDown" destination="N5Z-B6-IeA" eventType="touchDown" id="D9l-yS-xOY"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-FX-eVH">
@@ -200,7 +200,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showLanguage:" destination="N5Z-B6-IeA" eventType="touchUpInside" id="Raz-97-4ue"/>
+                                    <action selector="showLanguage" destination="N5Z-B6-IeA" eventType="touchUpInside" id="7oe-6P-Adn"/>
                                 </connections>
                             </button>
                             <pickerView hidden="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-7b-7Ml">
@@ -332,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vk7-ko-yhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404.5" y="949.5"/>
+            <point key="canvasLocation" x="-404.5" y="1004.5"/>
         </scene>
     </scenes>
     <resources>

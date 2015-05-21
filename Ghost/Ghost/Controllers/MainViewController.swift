@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
     
     
     // Hide picker when input field is focused.
-    @IBAction func touchUpInside(sender: UITextField) {
+    @IBAction func touchDown() {
         userPicker.hidden = true
         languagePicker.hidden = true
     }
@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
     }
     
     // Show language picker
-    @IBAction func showLanguage(sender: UIButton) {
+    @IBAction func showLanguage() {
         self.view.endEditing(true)
         userPicker.hidden = true
         languagePicker.hidden = false

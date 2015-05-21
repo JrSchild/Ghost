@@ -18,7 +18,7 @@ class UserModel {
         if let users = defaults.objectForKey("users") as? [String:Int] {
             self.users = users
         } else {
-            self.users = [String:Int]()
+            self.users = [:]
         }
         
         // TEMP: If no users have been loaded, put some dummy data.
@@ -71,7 +71,7 @@ class UserModel {
     }
     
     func clearUsers() {
-        users = [String:Int]()
+        users = [:]
         save()
     }
 }

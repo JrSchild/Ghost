@@ -10,29 +10,87 @@ import Foundation
 
 class GameModel {
     
-    let defaults = NSUserDefaults.standardUserDefaults()
     let dictionary : DictionaryModel
+    var gameRound : GameRoundModel
+    let finalWord = "GHOST"
     let user1 : String
     let user2 : String
-    var currentUser = true
-    var currentWord = ""
-    
-    // Required to retrieve state from gameViewController when saving.
-    var gameViewController : GameViewController
+    var scoreUser1 = 0
+    var scoreUser2 = 0
     
     // Indicates which person started this round. Required for restoring game state after quit.
     var userStart = true
     
-    init(dictionary: DictionaryModel, user1: String, user2: String, gameViewController: GameViewController) {
+    init(dictionary: DictionaryModel, user1: String, user2: String) {
         self.dictionary = dictionary
         self.user1 = user1
         self.user2 = user2
-        self.dictionary.reset()
-        self.gameViewController = gameViewController
+        self.gameRound = GameRoundModel(dictionary: dictionary, userStart: userStart)
+        save()
+    }
+    
+    func newRound() {
+        userStart = !userStart
+        self.gameRound = GameRoundModel(dictionary: dictionary, userStart: userStart)
+        save()
     }
     
     // Add a letter to the current word.
-    func guess(letter: String) -> Bool {
+    func guess(letter: String) {
+        gameRound.guess(letter)
+        save()
+    }
+    
+    // Returns boolean indicating who won, nil if no user won.
+    func roundWinner() -> Bool? {
+        if gameRound.isEnded() {
+            
+            // One-up score of loser.
+            if gameRound.winner! {
+                ++scoreUser2
+            } else {
+                ++scoreUser1
+            }
+            return gameRound.winner!
+        }
+        return nil
+    }
+    
+    func isGameOver() -> String? {
+        if (gameRound.winner! ? scoreUser2 : scoreUser1) >= countElements(finalWord) {
+            destroy()
+            return gameRound.winner! ? user1 : user2
+        }
+        return nil
+    }
+    
+    // Save the current gamestate.
+    func save() {
+        GameStorage.saveGameModel(self)
+    }
+    
+    // Destroy the saved gamestate.
+    func destroy() {
+        GameStorage.destroy()
+    }
+}
+
+class GameRoundModel {
+    
+    let dictionary : DictionaryModel
+    var winner : Bool!
+    var currentUser : Bool
+    var currentWord = ""
+    
+    init(dictionary: DictionaryModel, userStart: Bool) {
+        self.dictionary = dictionary
+        self.currentUser = userStart
+        
+        dictionary.reset()
+    }
+    
+    // Add a letter to the current word.
+    func guess(letter: String) {
         
         // exactly one letter must be guessed
         if countElements(letter) != 1 {
@@ -41,10 +99,17 @@ class GameModel {
         
         currentWord += letter
         dictionary.filter(currentWord)
-        
         turn()
-        save()
-        return currentUser
+    }
+    
+    func isEnded() -> Bool {
+        
+        // Check if current word is more than three letters and inside the dictionary.
+        if (countElements(currentWord) > 3 && dictionary.isWord(currentWord)) || dictionary.count() == 0 {
+            winner = currentUser
+            return true
+        }
+        return false
     }
     
     // Returns the new player.
@@ -53,34 +118,43 @@ class GameModel {
         
         return currentUser
     }
+}
+
+struct GameStorage {
     
-    // Check if current word is more than three letters and inside the dictionary.
-    func ended() -> Bool {
-        return (countElements(currentWord) > 3 && dictionary.isWord(currentWord)) || dictionary.count() == 0
+    static let defaults = NSUserDefaults.standardUserDefaults()
+    
+    static func destroy() {
+        GameStorage.defaults.removeObjectForKey("game")
     }
     
-    // Returns boolean indicating who won, nil if no user won.
-    func winner() -> Bool? {
-        return ended() ? currentUser : nil
-    }
-    
-    // Save the current gamestate.
-    func save() {
-        var game = [String:AnyObject]()
-        game["user1"] = user1
-        game["user2"] = user2
-        game["currentUser"] = currentUser
-        game["currentWord"] = currentWord
-        game["scoreUser1"] = gameViewController.scoreUser1
-        game["scoreUser2"] = gameViewController.scoreUser2
-        game["userStart"] = gameViewController.userStart
+    static func saveGameModel(game: GameModel) {
+        var gameData : [String:AnyObject] = [
+            "user1": game.user1,
+            "user2": game.user2,
+            "currentUser": game.gameRound.currentUser,
+            "currentWord": game.gameRound.currentWord,
+            "scoreUser1": game.scoreUser1,
+            "scoreUser2": game.scoreUser2,
+            "userStart": game.userStart
+        ]
         
-        defaults.setObject(game, forKey: "game")
+        defaults.setObject(gameData, forKey: "game")
         defaults.synchronize()
     }
     
-    // Destroy the saved gamestate.
-    func destroy() {
-        defaults.removeObjectForKey("game")
+    static func loadGameData() -> [String:AnyObject]? {
+        return NSUserDefaults.standardUserDefaults().objectForKey("game") as? [String:AnyObject]
+    }
+    
+    static func restoreGameModel(dictionary: DictionaryModel, gameData: [String:AnyObject]) -> GameModel {
+        var game = GameModel(dictionary: dictionary, user1: gameData["user1"] as String, user2: gameData["user2"] as String)
+        game.gameRound.currentWord = gameData["currentWord"] as String
+        game.gameRound.currentUser = gameData["currentUser"] as Bool
+        game.scoreUser1 = gameData["scoreUser1"] as Int
+        game.scoreUser2 = gameData["scoreUser2"] as Int
+        game.userStart = gameData["userStart"] as Bool
+        
+        return game
     }
 }

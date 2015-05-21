@@ -22,9 +22,6 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     var mainViewController : MainViewController!
     var user1 : String!
     var user2 : String!
-    var scoreUser1 = 0
-    var scoreUser2 = 0
-    let finalWord = "GHOST"
     let userTurn = UIColor.blueColor()
     let userNotTurn = UIColor.blackColor()
     
@@ -35,25 +32,20 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     var userStart = true
     
     // Pass through currentGame from parent controller if it has to start an existing game.
-    var currentGame : AnyObject!
+    var currentGame : [String:AnyObject]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadDictionaryModel()
         
-        // If the mainViewController passed through an existing game, restore it.
+        // If the mainViewController passed through an existing game, restore it, otherwise instantiate new.
         if currentGame != nil {
-            game = GameModel(dictionary: dictionary, user1: currentGame!["user1"] as String, user2: currentGame!["user2"] as String, gameViewController: self)
-            game.currentWord = currentGame!["currentWord"] as String
-            game.currentUser = currentGame!["currentUser"] as Bool
-            self.user1 = game.user1
-            self.user2 = game.user2
-            self.scoreUser1 = currentGame!["scoreUser1"] as Int
-            self.scoreUser2 = currentGame!["scoreUser2"] as Int
-            self.userStart = currentGame!["userStart"] as Bool
+            game = GameStorage.restoreGameModel(dictionary, gameData: currentGame!)
+        } else {
+            game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         }
-        
+    
         // Remove cursor, set delegate of inputword, set usernames and start.
         inputWord.tintColor = UIColor.clearColor()
         inputWord.delegate = self
@@ -65,17 +57,11 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     // Start a game.
     func start() {
         
-        // If a game hasn't been set when the view loaded, create a new one.
-        if game == nil {
-            game = GameModel(dictionary: dictionary, user1: user1, user2: user2, gameViewController: self)
-            game.currentUser = userStart
-            game.save()
-        }
-        
         // Update values and focus the input so keyboard shows.
-        currentWord.text = game.currentWord
-        setCurrentPlayer(game.currentUser)
+        currentWord.text = game.gameRound.currentWord
+        setCurrentPlayer()
         setScore()
+        inputWord.resignFirstResponder()
         inputWord.becomeFirstResponder()
     }
     
@@ -86,38 +72,29 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         
         // Guess current letter, update currentWord, reset input and auto-disable GO button.
         game.guess(inputWord.text)
-        currentWord.text = game.currentWord
+        currentWord.text = game.gameRound.currentWord
         inputWord.text = ""
         inputWord.resignFirstResponder()
         inputWord.becomeFirstResponder()
         
         // If there's a winner check if the game has ended otherwise change current player.
-        if let winner = game.winner() {
-            game.destroy()
-            game = nil
-            
-            // One-up score of loser and update view.
-            var score : Int
-            if winner {
-                score = ++scoreUser2
-            } else {
-                score = ++scoreUser1
-            }
+        if let winner = game.roundWinner() {
             setScore()
-            
+
             // If score is higher than current letters in final word, finish game and dismiss ViewController
-            if score >= countElements(finalWord) {
-                self.mainViewController.winner(winner ? user1 : user2)
+            if let gameWinner = game.isGameOver() {
+                self.mainViewController.winner(gameWinner)
                 self.dismissViewControllerAnimated(false, completion: nil)
-            
+                
             // Otherwise swap the beginning user and start a new round.
             } else {
-                userStart = !userStart
+                game.newRound()
                 start()
             }
         } else {
-            setCurrentPlayer(game.currentUser)
+            setCurrentPlayer()
         }
+        
         return false
     }
     
@@ -135,9 +112,9 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         }
         
         // Set the current word. Color the entered input red.
-        let attributedText = NSMutableAttributedString(string: "\(game.currentWord)\(inputWord.text)")
+        let attributedText = NSMutableAttributedString(string: "\(game.gameRound.currentWord)\(inputWord.text)")
         l = attributedText.length
-        if l > countElements(game.currentWord) {
+        if l > countElements(game.gameRound.currentWord) {
             attributedText.addAttributes([NSForegroundColorAttributeName: UIColor.redColor()], range: NSRange(location: l - 1, length: 1))
         }
         currentWord.attributedText = attributedText
@@ -145,19 +122,21 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     
     // Update score in view. Substring the final word with the score of each user.
     func setScore() {
-        scoreUser1Label.text = getScoreText(scoreUser1)
-        scoreUser2Label.text = getScoreText(scoreUser2)
+        scoreUser1Label.text = getScoreText(game.scoreUser1)
+        scoreUser2Label.text = getScoreText(game.scoreUser2)
     }
     
     // Set the color of each player depending on who's turn it is.
-    func setCurrentPlayer(turn: Bool) {
+    func setCurrentPlayer() {
+        let turn = game.gameRound.currentUser
+        
         labelUser1.textColor = turn ? userTurn : userNotTurn
         labelUser2.textColor = turn ? userNotTurn : userTurn
     }
     
     // Return the text of the score of user. e.g. 3 returns GHO
     func getScoreText(scoreUser: Int) -> String {
-        return finalWord.substringWithRange(Range(start: finalWord.startIndex, end: advance(finalWord.startIndex, scoreUser)))
+        return game.finalWord.substringWithRange(Range(start: game.finalWord.startIndex, end: advance(game.finalWord.startIndex, scoreUser)))
     }
     
     func loadDictionaryModel() {
@@ -200,9 +179,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     }
     
     func restart() {
-        game = nil
-        scoreUser1 = 0
-        scoreUser2 = 0
+        game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         start()
     }
 }

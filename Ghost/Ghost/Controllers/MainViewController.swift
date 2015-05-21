@@ -19,13 +19,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pickerLanguage: UIButton!
     
     var currentPicker : UITextField!
-    var currentGame : AnyObject!
+    var currentGame : [String:AnyObject]!
     
     let users = UserModel()
     let languages = LanguageModel()
     
     required init(coder aDecoder: NSCoder) {
-        currentGame = NSUserDefaults.standardUserDefaults().objectForKey("game")
+        currentGame = GameStorage.loadGameData()
         
         super.init(coder: aDecoder)
     }

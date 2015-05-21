@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Joram Ruitenschild. All rights reserved.
 //
 
-import Foundation
-
 class GameModel {
     
     let dictionary : DictionaryModel
@@ -18,7 +16,7 @@ class GameModel {
     var scoreUser1 = 0
     var scoreUser2 = 0
     
-    // Indicates which person started this round. Required for restoring game state after quit.
+    // Indicates which user starts the next round.
     var userStart = true
     
     init(dictionary: DictionaryModel, user1: String, user2: String) {
@@ -72,89 +70,5 @@ class GameModel {
     // Destroy the saved gamestate.
     func destroy() {
         GameStorage.destroy()
-    }
-}
-
-class GameRoundModel {
-    
-    let dictionary : DictionaryModel
-    var winner : Bool!
-    var currentUser : Bool
-    var currentWord = ""
-    
-    init(dictionary: DictionaryModel, userStart: Bool) {
-        self.dictionary = dictionary
-        self.currentUser = userStart
-        
-        dictionary.reset()
-    }
-    
-    // Add a letter to the current word.
-    func guess(letter: String) {
-        
-        // exactly one letter must be guessed
-        if countElements(letter) != 1 {
-            NSException.raise("Only one letter can be guessed!", format: "", arguments: getVaList([]))
-        }
-        
-        currentWord += letter
-        dictionary.filter(currentWord)
-        turn()
-    }
-    
-    func isEnded() -> Bool {
-        
-        // Check if current word is more than three letters and inside the dictionary.
-        if (countElements(currentWord) > 3 && dictionary.isWord(currentWord)) || dictionary.count() == 0 {
-            winner = currentUser
-            return true
-        }
-        return false
-    }
-    
-    // Returns the new player.
-    func turn() -> Bool {
-        currentUser = !currentUser
-        
-        return currentUser
-    }
-}
-
-struct GameStorage {
-    
-    static let defaults = NSUserDefaults.standardUserDefaults()
-    
-    static func destroy() {
-        GameStorage.defaults.removeObjectForKey("game")
-    }
-    
-    static func saveGameModel(game: GameModel) {
-        var gameData : [String:AnyObject] = [
-            "user1": game.user1,
-            "user2": game.user2,
-            "currentUser": game.round.currentUser,
-            "currentWord": game.round.currentWord,
-            "scoreUser1": game.scoreUser1,
-            "scoreUser2": game.scoreUser2,
-            "userStart": game.userStart
-        ]
-        
-        defaults.setObject(gameData, forKey: "game")
-        defaults.synchronize()
-    }
-    
-    static func loadGameData() -> [String:AnyObject]? {
-        return NSUserDefaults.standardUserDefaults().objectForKey("game") as? [String:AnyObject]
-    }
-    
-    static func restoreGameModel(dictionary: DictionaryModel, gameData: [String:AnyObject]) -> GameModel {
-        var game = GameModel(dictionary: dictionary, user1: gameData["user1"] as String, user2: gameData["user2"] as String)
-        game.round.currentWord = gameData["currentWord"] as String
-        game.round.currentUser = gameData["currentUser"] as Bool
-        game.scoreUser1 = gameData["scoreUser1"] as Int
-        game.scoreUser2 = gameData["scoreUser2"] as Int
-        game.userStart = gameData["userStart"] as Bool
-        
-        return game
     }
 }

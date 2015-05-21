@@ -56,7 +56,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
     }
     
     @IBAction func clearHighscores(sender: UIBarButtonItem) {
-        var sheet: UIActionSheet = UIActionSheet();
+        let sheet: UIActionSheet = UIActionSheet();
         sheet.delegate = self;
         sheet.addButtonWithTitle("Clear scores");
         sheet.addButtonWithTitle("Clear users");

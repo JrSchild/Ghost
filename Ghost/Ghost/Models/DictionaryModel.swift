@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Joram Ruitenschild. All rights reserved.
 //
 
-import Foundation
-
 class DictionaryModel {
     
     private let dictionary : [String]

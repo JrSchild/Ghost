@@ -6,16 +6,13 @@
 //  Copyright (c) 2015 Joram Ruitenschild. All rights reserved.
 //
 
-import Foundation
-
 class UserModel {
     
-    let defaults = NSUserDefaults.standardUserDefaults()
     var users : [String:Int]
     var usernames = [String]()
     
     init() {
-        if let users = defaults.objectForKey("users") as? [String:Int] {
+        if let users = Storage.load("users") as? [String:Int] {
             self.users = users
         } else {
             self.users = [:]
@@ -54,8 +51,7 @@ class UserModel {
             self.users[user1] > self.users[user2]
         })
         
-        defaults.setObject(users, forKey: "users")
-        defaults.synchronize()
+        Storage.save("users", data: users)
     }
     
     // Reset the score of all users.

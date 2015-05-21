@@ -28,10 +28,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     // Validate the input, if no char is entered yet validate first char, otherwise both.
     let inputTest = NSPredicate(format: "SELF MATCHES %@", "^[\'a-z-]{0,1}[\'a-z-]{1}$")
     
-    // Indicates which user starts the next round
-    var userStart = true
-    
-    // Pass through currentGame from parent controller if it has to start an existing game.
+    // Pass currentGame from parent-controller if it has to start an existing game.
     var currentGame : [String:AnyObject]!
     
     override func viewDidLoad() {
@@ -140,11 +137,11 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     }
     
     func loadDictionaryModel() {
-        dictionary = DictionaryModel(words: readDictionary(self.mainViewController.languages.language)!)
+        dictionary = DictionaryModel(words: DictionaryStorage.load(self.mainViewController.languages.language)!)
     }
     
     @IBAction func showOptions() {
-        var sheet: UIActionSheet = UIActionSheet();
+        let sheet: UIActionSheet = UIActionSheet();
         sheet.delegate = self;
         sheet.addButtonWithTitle("Restart game")
         sheet.addButtonWithTitle("Exit game")
@@ -171,7 +168,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
             game.destroy()
             self.dismissViewControllerAnimated(false, completion: nil)
             
-        // If chosen option is language.
+        // If chosen option is language: set new language, reload dictionary and restart.
         } else if let languageIndex = find(mainViewController.languages.languages, sheet.buttonTitleAtIndex(buttonIndex)) {
             mainViewController.languages.setLanguage(languageIndex)
             loadDictionaryModel()
@@ -183,11 +180,4 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         start()
     }
-}
-
-// Read the dictionary and return its contents.
-func readDictionary(language: String) -> String? {
-    let path = NSBundle.mainBundle().pathForResource(language, ofType: nil)
-    
-    return String(contentsOfFile:path!, encoding: NSUTF8StringEncoding, error: nil)
 }

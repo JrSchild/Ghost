@@ -6,16 +6,13 @@
 //  Copyright (c) 2015 Joram Ruitenschild. All rights reserved.
 //
 
-import Foundation
-
 class LanguageModel {
     
-    let defaults = NSUserDefaults.standardUserDefaults()
     let languages = ["English", "Dutch"]
     var language : String
     
     init() {
-        if let language = defaults.objectForKey("language") as? String {
+        if let language = Storage.load("language") as? String {
             self.language = language
         } else {
             self.language = languages[0]
@@ -35,7 +32,6 @@ class LanguageModel {
     }
     
     func save() {
-        defaults.setObject(language, forKey: "language")
-        defaults.synchronize()
+        Storage.save("language", data: language)
     }
 }

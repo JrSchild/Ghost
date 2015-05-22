@@ -23,13 +23,13 @@ class GameModel {
         self.dictionary = dictionary
         self.user1 = user1
         self.user2 = user2
-        self.round = GameRoundModel(dictionary: dictionary, userStart: userStart)
+        round = GameRoundModel(dictionary: dictionary, userStart: userStart)
         save()
     }
     
     func newRound() {
         userStart = !userStart
-        self.round = GameRoundModel(dictionary: dictionary, userStart: userStart)
+        round = GameRoundModel(dictionary: dictionary, userStart: userStart)
         save()
     }
     

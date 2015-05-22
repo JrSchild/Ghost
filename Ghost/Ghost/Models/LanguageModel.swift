@@ -21,8 +21,10 @@ class LanguageModel {
     }
     
     func setLanguage(language: String) {
-        self.language = language
-        save()
+        if contains(languages, language) {
+            self.language = language
+            save()
+        }
     }
     
     func setLanguage(languageIndex: Int) {

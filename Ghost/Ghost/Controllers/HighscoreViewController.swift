@@ -23,14 +23,14 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
     
     // Return length of content.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.users.usernames.count;
+        return users.usernames.count;
     }
     
     // Return table-cell per content item.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
-        let username = self.users.usernames[indexPath.row]
+        let username = users.usernames[indexPath.row]
         cell.textLabel?.text = "\(indexPath.row + 1). \(username)"
         
         // Create label for the score of user
@@ -38,7 +38,7 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
         let label = UILabel()
         label.font = UIFont.systemFontOfSize(accessoryFontSize)
         label.textAlignment = NSTextAlignment.Center
-        label.text = "\(self.users.users[username]!)"
+        label.text = "\(users.users[username]!)"
         label.sizeToFit()
         
         cell.accessoryView = label;
@@ -68,9 +68,9 @@ class HighscoreViewController: UIViewController, UINavigationBarDelegate, UITabl
     // Callback for action sheet.
     func actionSheet(sheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 0 {
-            self.users.clearScore()
+            users.clearScore()
         } else if buttonIndex == 1 {
-            self.users.clearUsers()
+            users.clearUsers()
         }
         self.tableView.reloadData()
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Abstract basic storage methods so this can be easily swapped out into another type of persistence.
+// Abstract basic storage methods so this can be easily swapped out into another type of key-value store.
 struct Storage {
     
     static let defaults = NSUserDefaults.standardUserDefaults()

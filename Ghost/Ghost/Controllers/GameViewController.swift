@@ -80,8 +80,8 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
             
             // If score is higher than current letters in final word, finish game and dismiss ViewController
             if let gameWinner = game.isGameOver() {
-                self.mainViewController.winner(gameWinner)
-                self.dismissViewControllerAnimated(false, completion: nil)
+                mainViewController.winner(gameWinner)
+                dismissViewControllerAnimated(false, completion: nil)
                 
             // Otherwise swap the beginning user and start a new round.
             } else {
@@ -137,7 +137,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
     }
     
     func loadDictionaryModel() {
-        dictionary = DictionaryModel(words: DictionaryStorage.load(self.mainViewController.languages.language)!)
+        dictionary = DictionaryModel(words: DictionaryStorage.load(mainViewController.languages.language)!)
     }
     
     @IBAction func showOptions() {
@@ -153,7 +153,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         }
         sheet.addButtonWithTitle("Cancel");
         sheet.cancelButtonIndex = languages.count + 2;
-        sheet.showInView(self.view);
+        sheet.showInView(view);
     }
     
     // Callback for action sheet.
@@ -166,9 +166,9 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         // If user wants to exit game.
         } else if buttonIndex == 1 {
             game.destroy()
-            self.dismissViewControllerAnimated(false, completion: nil)
+            dismissViewControllerAnimated(false, completion: nil)
             
-        // If chosen option is language: set new language, reload dictionary and restart.
+        // If chosen option is language.
         } else if let languageIndex = find(mainViewController.languages.languages, sheet.buttonTitleAtIndex(buttonIndex)) {
             mainViewController.languages.setLanguage(languageIndex)
             loadDictionaryModel()

@@ -12,11 +12,7 @@ class UserModel {
     var usernames = [String]()
     
     init() {
-        if let users = Storage.load("users") as? [String:Int] {
-            self.users = users
-        } else {
-            self.users = [:]
-        }
+        users = Storage.load("users") as? [String:Int] ?? [:]
         
         // TEMP: If no users have been loaded, put some dummy data.
         if (users.count == 0) {

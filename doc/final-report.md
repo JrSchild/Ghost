@@ -9,7 +9,7 @@ This report describes a slightly high level overview of the app Ghost. It descri
 Only three views with ViewControllers have been created. This simplifies the amount of steps the user is required to go through. A ViewController can be destroyed and re-created at any given time. The class only stores data that is related to this specific view.
 
 #### MainViewController
-This controller is instantiated on the initial application load. From this view the user is able to perform most other actions like starting a game, going to highscores, chaning language, entering usernames, etc. The view will live through the entire lifetime of the application.
+This controller is instantiated on the initial application load. From this view the user is able to perform most other actions like starting a game, going to highscores, changing language, entering usernames, etc. Because it is the root-view, it will live through the entire lifetime of the application.
 
 ![](/doc/1.main.png)
 
@@ -25,7 +25,7 @@ Notable properties
 - UserModel and LanguageModel are instantiated on init.
 
 #### GameViewController
-This view is destroyed when the game is finished and the MainViewController is shown.
+Controller to play one full game. This view is destroyed when the game is finished and the MainViewController is shown.
 
 ![](/doc/2.game.png)
 
@@ -35,7 +35,7 @@ Features:
 - A keyboard is always visible; the GO button is disabled when no letter has been entered. This is done by focusing a hidden Text Field. 
 - The current word is shown in the middle of the screen, the letter entered by the user is colored red.
 - Show the score of each user by substringing the word GHOST with the score of the user.
-- When the game is over a winner is shown in an Alert View and the GameViewController is destroyed.
+- When the game is over, a winner is shown in an Alert View and the GameViewController is destroyed.
 
 Notable properties
 - DictionaryModel instantiates when view loads.
@@ -50,14 +50,14 @@ Shows the usernames with their score in a table. This view is destroyed when the
 
 Features: 
 - Show list of users with their highscore.
-- Clear users, clear scores with a UIActionSheet.
+- Clear users/scores with a UIActionSheet.
 - Go back to MainViewController.
 
 Notable properties
 - UserModel passed through from MainViewController
 
 ### Class Overview: Models
-Models store data that need to be shared across the application. Some of them can be persisted by implementing storage methods. More on that in the next chapter.
+Models store data that need to be shared across the application and hold specific methods for controlling its data. Some models can be persisted by implementing storage methods. More on that in the next chapter.
 
 #### DictionaryModel
 Stores an entire dictionary for a language.

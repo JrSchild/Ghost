@@ -38,7 +38,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, UIActionSheetDe
         
         // If the mainViewController passed through an existing game, restore it, otherwise instantiate new.
         if currentGame != nil {
-            game = GameStorage.restoreGameModel(dictionary, gameData: currentGame!)
+            game = GameStorage.restore(dictionary, gameData: currentGame!)
         } else {
             game = GameModel(dictionary: dictionary, user1: user1, user2: user2)
         }

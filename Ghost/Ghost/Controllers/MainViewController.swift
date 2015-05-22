@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
     let languages = LanguageModel()
     
     required init(coder aDecoder: NSCoder) {
-        currentGame = GameStorage.loadGameData()
+        currentGame = GameStorage.load()
         
         super.init(coder: aDecoder)
     }

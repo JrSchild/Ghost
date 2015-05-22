@@ -13,7 +13,7 @@ struct GameStorage {
         Storage.remove("game")
     }
     
-    static func saveGameModel(game: GameModel) {
+    static func save(game: GameModel) {
         var gameData: [String:AnyObject] = [
             "user1": game.user1,
             "user2": game.user2,
@@ -27,11 +27,11 @@ struct GameStorage {
         Storage.save("game", data: gameData)
     }
     
-    static func loadGameData() -> [String:AnyObject]? {
+    static func load() -> [String:AnyObject]? {
         return Storage.load("game") as? [String:AnyObject]
     }
     
-    static func restoreGameModel(dictionary: DictionaryModel, gameData: [String:AnyObject]) -> GameModel {
+    static func restore(dictionary: DictionaryModel, gameData: [String:AnyObject]) -> GameModel {
         var game = GameModel(dictionary: dictionary, user1: gameData["user1"] as String, user2: gameData["user2"] as String)
         game.round.currentWord = gameData["currentWord"] as String
         game.round.currentUser = gameData["currentUser"] as Bool

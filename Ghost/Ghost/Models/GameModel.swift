@@ -64,7 +64,7 @@ class GameModel {
     
     // Save the current gamestate.
     func save() {
-        GameStorage.saveGameModel(self)
+        GameStorage.save(self)
     }
     
     // Destroy the saved gamestate.

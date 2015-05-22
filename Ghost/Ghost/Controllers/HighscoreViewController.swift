@@ -5,6 +5,8 @@
 //  Created by Joram Ruitenschild on 11-05-15.
 //  Copyright (c) 2015 Joram Ruitenschild - 500627061. All rights reserved.
 //
+//  Overview of users with their scores.
+//
 
 import UIKit
 

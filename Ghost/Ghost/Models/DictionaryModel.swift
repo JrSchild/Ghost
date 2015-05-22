@@ -5,6 +5,8 @@
 //  Created by Joram Ruitenschild on 16-04-15.
 //  Copyright (c) 2015 Joram Ruitenschild - 500627061. All rights reserved.
 //
+//  Store, filter and reset a dictionary.
+//
 
 class DictionaryModel {
     

@@ -5,6 +5,8 @@
 //  Created by Joram Ruitenschild on 21-05-15.
 //  Copyright (c) 2015 Joram Ruitenschild - 500627061. All rights reserved.
 //
+//  The data for one single round in a game. Guess letters, filter the dictionary.
+//
 
 import Foundation
 

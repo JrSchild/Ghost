@@ -5,6 +5,8 @@
 //  Created by Joram Ruitenschild on 12-05-15.
 //  Copyright (c) 2015 Joram Ruitenschild - 500627061. All rights reserved.
 //
+//  Store usernames and their score. Add users, sort usernames, clear score and usernames.
+//
 
 class UserModel {
     

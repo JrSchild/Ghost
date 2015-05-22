@@ -5,6 +5,9 @@
 //  Created by Joram Ruitenschild on 30-04-15.
 //  Copyright (c) 2015 Joram Ruitenschild - 500627061. All rights reserved.
 //
+//  MainView initializes on application load. User can start a game, see highscores
+//  or change language. Controller can resume existing saved game.
+//
 
 import UIKit
 
